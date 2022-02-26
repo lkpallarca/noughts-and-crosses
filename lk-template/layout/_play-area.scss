@@ -1,0 +1,206 @@
+section {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 25vh;
+
+    .play-area {
+        height: 50vh;
+        width: 30vw;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+
+        .xo-grid {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid black;
+
+            .player {
+                color: black;
+
+                // &.hide {
+                //     display: none;
+                // }
+            }
+
+            .x {
+
+                .x-image {
+                    height: 80px;
+                    width: 80px;
+
+                    &.top-left {
+                        @include player-input;
+    
+                        &.show {
+                            @include show-input;
+                        }
+                    }
+
+                    &.top-middle {
+                        @include player-input;
+    
+                        &.show {
+                            @include show-input;
+                        }
+                    }
+
+                    &.top-right {
+                        @include player-input;
+    
+                        &.show {
+                            @include show-input;
+                        }
+                    }
+
+                    &.middle-left {
+                        @include player-input;
+    
+                        &.show {
+                            @include show-input;
+                        }
+                    }
+
+                    &.center {
+                        @include player-input;
+    
+                        &.show {
+                            @include show-input;
+                        }
+                    }
+
+                    &.middle-right {
+                        @include player-input;
+    
+                        &.show {
+                            @include show-input;
+                        }
+                    }
+
+                    &.bottom-left {
+                        @include player-input;
+    
+                        &.show {
+                            @include show-input;
+                        }
+                    }
+
+                    &.bottom-middle {
+                        @include player-input;
+    
+                        &.show {
+                            @include show-input;
+                        }
+                    }
+
+                    &.bottom-right {
+                        @include player-input;
+    
+                        &.show {
+                            @include show-input;
+                        }
+                    }                    
+                }
+            }
+
+            .o {
+                
+                .o-image {
+                    height: 90px;
+                    width: 90px;
+
+                    &.top-left {
+                        @include player-input;
+    
+                        &.show {
+                            @include show-input;
+                        }
+                    }
+
+                    &.top-middle {
+                        @include player-input;
+    
+                        &.show {
+                            @include show-input;
+                        }
+                    }
+
+                    &.top-right {
+                        @include player-input;
+    
+                        &.show {
+                            @include show-input;
+                        }
+                    }
+
+                    &.middle-left {
+                        @include player-input;
+    
+                        &.show {
+                            @include show-input;
+                        }
+                    }
+
+                    &.center {
+                        @include player-input;
+    
+                        &.show {
+                            @include show-input;
+                        }
+                    }
+
+                    &.middle-right {
+                        @include player-input;
+    
+                        &.show {
+                            @include show-input;
+                        }
+                    }
+
+                    &.bottom-left {
+                        @include player-input;
+    
+                        &.show {
+                            @include show-input;
+                        }
+                    }
+
+                    &.bottom-middle {
+                        @include player-input;
+    
+                        &.show {
+                            @include show-input;
+                        }
+                    }
+
+                    &.bottom-right {
+                        @include player-input;
+    
+                        &.show {
+                            @include show-input;
+                        }
+                    }
+                }
+            }
+        }
+
+        .top {
+            border-top: none;
+        }
+
+        .left {
+            border-left: none;
+        }
+        
+        .right {
+            border-right: none;
+        }
+
+        .bottom {
+            border-bottom: none;
+        }
+    }
+}

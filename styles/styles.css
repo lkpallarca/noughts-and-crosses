@@ -1,0 +1,264 @@
+@import url("https://fonts.googleapis.com/css2?family=Vollkorn&display=swap");
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  font-family: "Vollkorn";
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+section {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-top: 25vh;
+}
+
+section .play-area {
+  height: 50vh;
+  width: 30vw;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[3];
+      grid-template-columns: repeat(3, 1fr);
+  -ms-grid-rows: (1fr)[3];
+      grid-template-rows: repeat(3, 1fr);
+}
+
+section .play-area .xo-grid {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border: 2px solid black;
+}
+
+section .play-area .xo-grid .player {
+  color: black;
+}
+
+section .play-area .xo-grid .x .x-image {
+  height: 80px;
+  width: 80px;
+}
+
+section .play-area .xo-grid .x .x-image.top-left {
+  display: none;
+}
+
+section .play-area .xo-grid .x .x-image.top-left.show {
+  display: block;
+}
+
+section .play-area .xo-grid .x .x-image.top-middle {
+  display: none;
+}
+
+section .play-area .xo-grid .x .x-image.top-middle.show {
+  display: block;
+}
+
+section .play-area .xo-grid .x .x-image.top-right {
+  display: none;
+}
+
+section .play-area .xo-grid .x .x-image.top-right.show {
+  display: block;
+}
+
+section .play-area .xo-grid .x .x-image.middle-left {
+  display: none;
+}
+
+section .play-area .xo-grid .x .x-image.middle-left.show {
+  display: block;
+}
+
+section .play-area .xo-grid .x .x-image.center {
+  display: none;
+}
+
+section .play-area .xo-grid .x .x-image.center.show {
+  display: block;
+}
+
+section .play-area .xo-grid .x .x-image.middle-right {
+  display: none;
+}
+
+section .play-area .xo-grid .x .x-image.middle-right.show {
+  display: block;
+}
+
+section .play-area .xo-grid .x .x-image.bottom-left {
+  display: none;
+}
+
+section .play-area .xo-grid .x .x-image.bottom-left.show {
+  display: block;
+}
+
+section .play-area .xo-grid .x .x-image.bottom-middle {
+  display: none;
+}
+
+section .play-area .xo-grid .x .x-image.bottom-middle.show {
+  display: block;
+}
+
+section .play-area .xo-grid .x .x-image.bottom-right {
+  display: none;
+}
+
+section .play-area .xo-grid .x .x-image.bottom-right.show {
+  display: block;
+}
+
+section .play-area .xo-grid .o .o-image {
+  height: 90px;
+  width: 90px;
+}
+
+section .play-area .xo-grid .o .o-image.top-left {
+  display: none;
+}
+
+section .play-area .xo-grid .o .o-image.top-left.show {
+  display: block;
+}
+
+section .play-area .xo-grid .o .o-image.top-middle {
+  display: none;
+}
+
+section .play-area .xo-grid .o .o-image.top-middle.show {
+  display: block;
+}
+
+section .play-area .xo-grid .o .o-image.top-right {
+  display: none;
+}
+
+section .play-area .xo-grid .o .o-image.top-right.show {
+  display: block;
+}
+
+section .play-area .xo-grid .o .o-image.middle-left {
+  display: none;
+}
+
+section .play-area .xo-grid .o .o-image.middle-left.show {
+  display: block;
+}
+
+section .play-area .xo-grid .o .o-image.center {
+  display: none;
+}
+
+section .play-area .xo-grid .o .o-image.center.show {
+  display: block;
+}
+
+section .play-area .xo-grid .o .o-image.middle-right {
+  display: none;
+}
+
+section .play-area .xo-grid .o .o-image.middle-right.show {
+  display: block;
+}
+
+section .play-area .xo-grid .o .o-image.bottom-left {
+  display: none;
+}
+
+section .play-area .xo-grid .o .o-image.bottom-left.show {
+  display: block;
+}
+
+section .play-area .xo-grid .o .o-image.bottom-middle {
+  display: none;
+}
+
+section .play-area .xo-grid .o .o-image.bottom-middle.show {
+  display: block;
+}
+
+section .play-area .xo-grid .o .o-image.bottom-right {
+  display: none;
+}
+
+section .play-area .xo-grid .o .o-image.bottom-right.show {
+  display: block;
+}
+
+section .play-area .top {
+  border-top: none;
+}
+
+section .play-area .left {
+  border-left: none;
+}
+
+section .play-area .right {
+  border-right: none;
+}
+
+section .play-area .bottom {
+  border-bottom: none;
+}
+/*# sourceMappingURL=styles.css.map */
