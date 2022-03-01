@@ -9,8 +9,9 @@
    <link rel="icon" type="image/gif" href="my-logo/animated_favicon1.gif" >
     <title>Noughts and Crosses</title>
 </head>
-<body>
-    <section>
+<body style="background-color: black;">
+    <section id="grid-display">
+        <button id="trigger"></button>
         <div class="play-area">
             <div class="xo-grid top left">
                 <div class="player x"><img class="x-image top-left" src="assets/blue-x.png" alt="blue x"></div>
@@ -49,6 +50,17 @@
                 <div class="player o"><img class="o-image bottom-right" src="assets/red-o.png" alt="red o"></div>
             </div>
         </div>
+    </section>
+    <section id="win-modal">
+        <div class="o-win">Player O wins!</div>
+        <div class="x-win">Player X wins!</div>
+        <div class="ox-draw">It's a Draw!</div>
+    </section>
+    <section>
+        <audio id="x-audio" src="assets/mixkit-electric-pop-2365.wav"></audio>
+        <audio id="o-audio" src="assets/mixkit-hard-pop-click-2364.wav"></audio>
+        <audio id="draw-audio" src="assets/mixkit-arcade-game-draw-205.wav"></audio>
+        <audio id="win-audio" src="assets/mixkit-winning-notification-2018.wav"></audio>
     </section>
 <script src="scripts/index.js" defer type="module"></script>
 </body>

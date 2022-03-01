@@ -1,9 +1,10 @@
-section {
+#grid-display {
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     margin-top: 25vh;
+    flex-direction: column;
 
     .play-area {
         height: 50vh;
@@ -16,21 +17,12 @@ section {
             display: flex;
             align-items: center;
             justify-content: center;
-            border: 2px solid black;
-
-            .player {
-                color: black;
-
-                // &.hide {
-                //     display: none;
-                // }
-            }
+            border: 2px solid white;
 
             .x {
-
                 .x-image {
-                    height: 80px;
-                    width: 80px;
+                    height: 65px;
+                    width: 65px;
 
                     &.top-left {
                         @include player-input;
@@ -107,7 +99,6 @@ section {
             }
 
             .o {
-                
                 .o-image {
                     height: 90px;
                     width: 90px;
