@@ -4,16 +4,6 @@ const board = [
     ["", "", ""]
 ];
 
-// let topLeft = board[0][0];
-// let topMiddle = board[0][1];
-// let topRight = board[0][2];
-// let middleLeft = board[1][0];
-// let center = board[1][1];
-// let middleRight = board[1][2];
-// let bottomLeft = board[2][0];
-// let bottomMiddle = board[2][1];
-// let bottomRight = board[2][2];
-
 let turn = 0;
 let turnCount = 0;
 
@@ -307,3 +297,13 @@ function checkDraw(){
         document.querySelector(".ox-draw").classList.add("show");
     }
 }
+
+function startPage(){
+    document.querySelector(".start-player-x").classList.add("show");
+    document.querySelector(".start-player-o").classList.add("show");
+    document.querySelector(".game-title").classList.add("show");
+    document.querySelector(".first-move-select").classList.add("show");
+}
+
+
+document.addEventListener("DOMContentLoaded", setTimeout(startPage, 1000));

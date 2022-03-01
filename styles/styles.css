@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Vollkorn&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Fredoka:wght@500&family=Vollkorn&display=swap");
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -17,7 +18,7 @@ time, mark, audio, video {
   border: 0;
   font-size: 100%;
   font: inherit;
-  font-family: "Vollkorn";
+  font-family: "Fredoka";
   vertical-align: baseline;
 }
 
@@ -338,5 +339,177 @@ table {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+#startup-modal {
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: black;
+}
+
+#startup-modal.hide {
+  display: none;
+}
+
+#startup-modal #testing {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  z-index: 10;
+}
+
+#startup-modal .game-title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  position: fixed;
+  top: 0;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  background-color: black;
+  -webkit-transition: 1s all ease-in-out;
+  transition: 1s all ease-in-out;
+  visibility: hidden;
+  opacity: 0;
+  margin-top: 5vh;
+  z-index: 2;
+}
+
+#startup-modal .game-title .game-title-text {
+  color: white;
+  font-size: 5vw;
+}
+
+#startup-modal .game-title .mode-select {
+  margin-top: 5vh;
+  color: white;
+  font-size: 3vw;
+}
+
+#startup-modal .game-title .mode-select .two-player {
+  margin-right: 20px;
+}
+
+#startup-modal .game-title .mode-select .two-player:hover {
+  color: blue;
+}
+
+#startup-modal .game-title .mode-select .vs-ai {
+  margin-right: 20px;
+  display: none;
+}
+
+#startup-modal .game-title .mode-select .vs-ai:hover {
+  color: red;
+}
+
+#startup-modal .game-title.show {
+  visibility: visible;
+  opacity: 1;
+}
+
+#startup-modal .start-player-x {
+  margin-bottom: 20vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 0vw;
+  height: auto;
+  background-color: black;
+  -webkit-transition: 0.7s width ease-in-out;
+  transition: 0.7s width ease-in-out;
+}
+
+#startup-modal .start-player-x .player-select-x {
+  color: blue;
+  font-size: 25vw;
+}
+
+#startup-modal .start-player-x .player-select-x:hover {
+  text-shadow: -7px 7px 10px gray, -7px -7px 10px gray;
+}
+
+#startup-modal .start-player-x.show {
+  width: 50vw;
+}
+
+#startup-modal .start-player-o {
+  margin-bottom: 20vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 0vw;
+  height: auto;
+  background-color: black;
+  -webkit-transition: 0.7s width ease-in-out;
+  transition: 0.7s width ease-in-out;
+}
+
+#startup-modal .start-player-o .player-select-o {
+  color: red;
+  font-size: 25vw;
+}
+
+#startup-modal .start-player-o .player-select-o:hover {
+  text-shadow: 7px 7px 10px gray, 7px -7px 10px gray;
+}
+
+#startup-modal .start-player-o.show {
+  width: 50vw;
+}
+
+#startup-modal .first-move-select {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  background-color: black;
+  -webkit-transition: 1s all ease-in-out;
+  transition: 1s all ease-in-out;
+  visibility: hidden;
+  opacity: 0;
+  margin-bottom: 20vh;
+  z-index: 2;
+  color: white;
+  font-size: 2vw;
+}
+
+#startup-modal .first-move-select.show {
+  visibility: visible;
+  opacity: 1;
 }
 /*# sourceMappingURL=styles.css.map */
