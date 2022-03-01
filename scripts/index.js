@@ -1,10 +1,77 @@
+function flickerSelect(){
+    document.querySelector(".first-move-select").classList.toggle("flicker");
+}
+
+function startPage(){
+    document.querySelector(".start-player-x").classList.add("show");
+    document.querySelector(".start-player-o").classList.add("show");
+    document.querySelector(".game-title").classList.add("show");
+    document.querySelector(".first-move-select").classList.add("show");
+
+    setTimeout(() => {
+        setInterval(() => {
+            if(!playerSelectO.classList.contains("selected") && !playerSelectX.classList.contains("selected")){
+                document.querySelector(".first-move-select").classList.add("show");
+                flickerSelect();
+                document.querySelector(".game-start").classList.remove("show");
+            } else {
+                document.querySelector(".first-move-select").classList.remove("show");
+                document.querySelector(".game-start").classList.add("show");
+            }
+         }, 500);
+    }, 1000);
+
+}
+document.addEventListener("DOMContentLoaded", startPage);
+
+
+let turn = 0;
+const playerSelectX = document.querySelector(".player-select-x");
+const playerSelectO = document.querySelector(".player-select-o");
+
+playerSelectX.addEventListener("click", () =>{
+    if(playerSelectO.classList.contains("selected")){
+        playerSelectO.classList.remove("selected");
+    }
+    playerSelectX.classList.toggle("selected");
+    document.querySelector(".game-start").classList.add("show");
+    turn = 1;
+});
+
+playerSelectO.addEventListener("click", () =>{
+    if(playerSelectX.classList.contains("selected")){
+        playerSelectX.classList.remove("selected");
+    }
+    playerSelectO.classList.toggle("selected");
+    document.querySelector(".game-start").classList.add("show");
+    turn = 0;
+});
+
+function removePageModal(){
+    setTimeout(() => {
+        document.getElementById("startup-modal").classList.add("hide");
+    }, 1000);
+    document.querySelector(".start-player-x").classList.remove("show");
+    document.querySelector(".start-player-o").classList.remove("show");
+    document.querySelector(".game-title").classList.remove("show");
+    document.querySelector(".first-move-select").classList.remove("show");
+    document.querySelector(".game-start").style.display = "none";
+}
+
+
+const startGameTrigger = document.querySelector(".game-start");
+startGameTrigger.addEventListener("click", () =>{
+    if(playerSelectO.classList.contains("selected") || playerSelectX.classList.contains("selected")){
+        removePageModal();
+    }
+});
+
 const board = [
     ["", "", ""],
     ["", "", ""],
     ["", "", ""]
 ];
 
-let turn = 0;
 let turnCount = 0;
 
 const gridTopLeft = document.querySelector(".xo-grid.top.left");
@@ -255,55 +322,62 @@ gridBottomRight.addEventListener("click", () =>{
 function checkOWin(){
     if(board[0][0] == "O" && board[0][1] == "O" && board[0][2] == "O"){
         document.querySelector(".o-win").classList.add("show");
+        document.getElementById("win-audio").play();
     } else if(board[1][0] == "O" && board[1][1] == "O" && board[1][2] == "O"){
         document.querySelector(".o-win").classList.add("show");
+        document.getElementById("win-audio").play();
     } else if(board[2][0] == "O" && board[2][1] == "O" && board[2][2] == "O"){
         document.querySelector(".o-win").classList.add("show");
+        document.getElementById("win-audio").play();
     } else if(board[0][0] == "O" && board[1][0] == "O" && board [2][0] == "O"){
         document.querySelector(".o-win").classList.add("show");
+        document.getElementById("win-audio").play();
     } else if(board[0][1] == "O" && board[1][1] == "O" && board [2][1] == "O"){
         document.querySelector(".o-win").classList.add("show");
+        document.getElementById("win-audio").play();
     } else if(board[0][2] == "O" && board[1][2] == "O" && board [2][2] == "O"){
         document.querySelector(".o-win").classList.add("show");
+        document.getElementById("win-audio").play();
     } else if(board[0][0] == "O" && board[1][1] == "O" && board[2][2] == "O"){
         document.querySelector(".o-win").classList.add("show");
+        document.getElementById("win-audio").play();
     } else if(board[0][2] == "O" && board[1][1] == "O" && board[2][0] == "O"){
         document.querySelector(".o-win").classList.add("show");
+        document.getElementById("win-audio").play();
     }
 }
 
 function checkXWin(){
     if(board[0][0] == "X" && board[0][1] == "X" && board[0][2] == "X"){
         document.querySelector(".x-win").classList.add("show");
+        document.getElementById("win-audio").play();
     } else if(board[1][0] == "X" && board[1][1] == "X" && board[1][2] == "X"){
         document.querySelector(".x-win").classList.add("show");
+        document.getElementById("win-audio").play();
     } else if(board[2][0] == "X" && board[2][1] == "X" && board[2][2] == "X"){
         document.querySelector(".x-win").classList.add("show");
+        document.getElementById("win-audio").play();
     } else if(board[0][0] == "X" && board[1][0] == "X" && board [2][0] == "X"){
         document.querySelector(".x-win").classList.add("show");
+        document.getElementById("win-audio").play();
     } else if(board[0][1] == "X" && board[1][1] == "X" && board [2][1] == "X"){
         document.querySelector(".x-win").classList.add("show");
+        document.getElementById("win-audio").play();
     } else if(board[0][2] == "X" && board[1][2] == "X" && board [2][2] == "X"){
         document.querySelector(".x-win").classList.add("show");
+        document.getElementById("win-audio").play();
     } else if(board[0][0] == "X" && board[1][1] == "X" && board[2][2] == "X"){
         document.querySelector(".x-win").classList.add("show");
+        document.getElementById("win-audio").play();
     } else if(board[0][2] == "X" && board[1][1] == "X" && board[2][0] == "X"){
         document.querySelector(".x-win").classList.add("show");
+        document.getElementById("win-audio").play();
     }
 }
 
 function checkDraw(){
     if(turnCount == 9 && !document.querySelector(".o-win").classList.contains("show") && !document.querySelector(".x-win").classList.contains("show")){
         document.querySelector(".ox-draw").classList.add("show");
+        document.getElementById("draw-audio").play();
     }
 }
-
-function startPage(){
-    document.querySelector(".start-player-x").classList.add("show");
-    document.querySelector(".start-player-o").classList.add("show");
-    document.querySelector(".game-title").classList.add("show");
-    document.querySelector(".first-move-select").classList.add("show");
-}
-
-
-document.addEventListener("DOMContentLoaded", setTimeout(startPage, 1000));

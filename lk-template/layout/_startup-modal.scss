@@ -26,7 +26,7 @@
         top: 0;
         left: 50%;
         transform: translateX(-50%);
-        background-color: black;
+        background-color: transparent;
         transition: 1s all ease-in-out;
         visibility: hidden;
         opacity: 0;
@@ -39,6 +39,8 @@
         }
 
         .mode-select {
+            user-select: none;
+            cursor: pointer;
             margin-top: 5vh;
             color: white;
             font-size: 3vw;
@@ -77,15 +79,22 @@
         left: 0;
         width: 0vw;
         height: auto;
-        background-color: black;
+        background-color: transparent;
         transition: 0.7s width ease-in-out;
 
 
         .player-select-x {
+            user-select: none;
+            cursor: pointer;
             color: blue;
             font-size: 25vw;
 
             &:hover {
+                text-shadow: -7px 7px 10px hsl(0, 0%, 50%), -7px -7px 10px hsl(0, 0%, 50%);
+            }
+
+            &.selected {
+                transform: scale(1.05);
                 text-shadow: -7px 7px 10px hsl(0, 0%, 50%), -7px -7px 10px hsl(0, 0%, 50%);
             }
         }
@@ -96,6 +105,8 @@
     }
 
     .start-player-o {
+        user-select: none;
+        cursor: pointer;
         margin-bottom: 20vh;
         display: flex;
         justify-content: flex-start;
@@ -105,7 +116,7 @@
         right: 0;
         width: 0vw;
         height: auto;
-        background-color: black;
+        background-color: transparent;
         transition: 0.7s width ease-in-out;
 
         .player-select-o {
@@ -114,6 +125,11 @@
 
             &:hover {
                 text-shadow: 7px 7px 10px hsl(0, 0%, 50%), 7px -7px 10px hsl(0, 0%, 50%);
+            }
+
+            &.selected {
+                text-shadow: 7px 7px 10px hsl(0, 0%, 50%), 7px -7px 10px hsl(0, 0%, 50%);
+                transform: scale(1.05);
             }
         }
 
@@ -127,14 +143,46 @@
         bottom: 0;
         left: 50%;
         transform: translateX(-50%);
-        background-color: black;
-        transition: 1s all ease-in-out;
+        background-color: transparent;
+        transition: 1s visibility ease-in;
+        transition: 1s opacity ease-in;
         visibility: hidden;
         opacity: 0;
-        margin-bottom: 20vh;
+        margin-bottom: 15vh;
         z-index: 2;
         color: white;
         font-size: 2vw;
+
+        &.flicker {
+            text-shadow: 0 0 20px hsl(0, 0%, 100%), 0 0 20px hsl(0, 0%, 100%);
+        }
+
+        &.show {
+            visibility: visible;
+            opacity: 1;
+        }
+    }
+
+    .game-start {
+        cursor: pointer;
+        user-select: none;
+        position: fixed;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: transparent;
+        transition: 1.7s visibility ease-in-out;
+        transition: 1.7s opacity ease-in-out;
+        visibility: hidden;
+        opacity: 0;
+        margin-bottom: 15vh;
+        z-index: 2;
+        color: white;
+        font-size: 2vw;
+
+        &:hover {
+            text-shadow: 0 0 10px hsl(0, 0%, 100%);
+        }
 
         &.show {
             visibility: visible;

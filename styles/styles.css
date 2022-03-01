@@ -81,6 +81,7 @@ table {
 }
 
 #grid-display .play-area .xo-grid {
+  cursor: pointer;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -268,7 +269,7 @@ table {
   position: absolute;
   width: auto;
   left: 50%;
-  top: 50%;
+  top: 15%;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
   z-index: 2;
@@ -294,7 +295,7 @@ table {
   position: absolute;
   width: auto;
   left: 50%;
-  top: 50%;
+  top: 15%;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
   z-index: 2;
@@ -320,7 +321,7 @@ table {
   position: absolute;
   width: auto;
   left: 50%;
-  top: 50%;
+  top: 15%;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
   z-index: 2;
@@ -381,7 +382,7 @@ table {
   left: 50%;
   -webkit-transform: translateX(-50%);
           transform: translateX(-50%);
-  background-color: black;
+  background-color: transparent;
   -webkit-transition: 1s all ease-in-out;
   transition: 1s all ease-in-out;
   visibility: hidden;
@@ -396,6 +397,11 @@ table {
 }
 
 #startup-modal .game-title .mode-select {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  cursor: pointer;
   margin-top: 5vh;
   color: white;
   font-size: 3vw;
@@ -439,12 +445,17 @@ table {
   left: 0;
   width: 0vw;
   height: auto;
-  background-color: black;
+  background-color: transparent;
   -webkit-transition: 0.7s width ease-in-out;
   transition: 0.7s width ease-in-out;
 }
 
 #startup-modal .start-player-x .player-select-x {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  cursor: pointer;
   color: blue;
   font-size: 25vw;
 }
@@ -453,11 +464,22 @@ table {
   text-shadow: -7px 7px 10px gray, -7px -7px 10px gray;
 }
 
+#startup-modal .start-player-x .player-select-x.selected {
+  -webkit-transform: scale(1.05);
+          transform: scale(1.05);
+  text-shadow: -7px 7px 10px gray, -7px -7px 10px gray;
+}
+
 #startup-modal .start-player-x.show {
   width: 50vw;
 }
 
 #startup-modal .start-player-o {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  cursor: pointer;
   margin-bottom: 20vh;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -473,7 +495,7 @@ table {
   right: 0;
   width: 0vw;
   height: auto;
-  background-color: black;
+  background-color: transparent;
   -webkit-transition: 0.7s width ease-in-out;
   transition: 0.7s width ease-in-out;
 }
@@ -487,6 +509,12 @@ table {
   text-shadow: 7px 7px 10px gray, 7px -7px 10px gray;
 }
 
+#startup-modal .start-player-o .player-select-o.selected {
+  text-shadow: 7px 7px 10px gray, 7px -7px 10px gray;
+  -webkit-transform: scale(1.05);
+          transform: scale(1.05);
+}
+
 #startup-modal .start-player-o.show {
   width: 50vw;
 }
@@ -497,18 +525,57 @@ table {
   left: 50%;
   -webkit-transform: translateX(-50%);
           transform: translateX(-50%);
-  background-color: black;
-  -webkit-transition: 1s all ease-in-out;
-  transition: 1s all ease-in-out;
+  background-color: transparent;
+  -webkit-transition: 1s visibility ease-in;
+  transition: 1s visibility ease-in;
+  -webkit-transition: 1s opacity ease-in;
+  transition: 1s opacity ease-in;
   visibility: hidden;
   opacity: 0;
-  margin-bottom: 20vh;
+  margin-bottom: 15vh;
   z-index: 2;
   color: white;
   font-size: 2vw;
 }
 
+#startup-modal .first-move-select.flicker {
+  text-shadow: 0 0 20px white, 0 0 20px white;
+}
+
 #startup-modal .first-move-select.show {
+  visibility: visible;
+  opacity: 1;
+}
+
+#startup-modal .game-start {
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  background-color: transparent;
+  -webkit-transition: 1.7s visibility ease-in-out;
+  transition: 1.7s visibility ease-in-out;
+  -webkit-transition: 1.7s opacity ease-in-out;
+  transition: 1.7s opacity ease-in-out;
+  visibility: hidden;
+  opacity: 0;
+  margin-bottom: 15vh;
+  z-index: 2;
+  color: white;
+  font-size: 2vw;
+}
+
+#startup-modal .game-start:hover {
+  text-shadow: 0 0 10px white;
+}
+
+#startup-modal .game-start.show {
   visibility: visible;
   opacity: 1;
 }
