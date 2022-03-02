@@ -523,8 +523,9 @@ function checkXWin(){
 }
 
 function checkDraw(){
-    if(turnCount == 9 && !document.querySelector(".o-win").classList.contains("show") && !document.querySelector(".x-win").classList.contains("show")){
+    if(turnCount == 9 && !document.querySelector(".o-win").classList.contains("show") && !document.querySelector(".x-win").classList.contains("show") && !endGame){
         document.querySelector(".ox-draw").classList.add("show");
+        endGame = true;
         document.getElementById("draw-audio").play();
         drawCounter += 1;
         displayWinCounter();
