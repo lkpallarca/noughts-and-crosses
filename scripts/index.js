@@ -10,6 +10,7 @@ let historyBoard = [];
 let winCounterX = 0;
 let winCounterO = 0;
 let drawCounter = 0;
+let endGame = false;
 
 const winCounterXDisplay = document.getElementById("win-counter-x");
 const winCounterODisplay = document.getElementById("win-counter-o");
@@ -153,6 +154,7 @@ const inputXBottomRight = document.querySelector(".x-image.bottom-right");
 const inputOBottomRight = document.querySelector(".o-image.bottom-right");
 
 function reset(){
+    endGame = false;
     document.querySelector(".history-display-hover").classList.remove("elongate");
     document.getElementById("history-display").innerHTML = "";
     document.getElementById("history-display").classList.add("hidden");
@@ -417,43 +419,51 @@ gridBottomRight.addEventListener("click", () =>{
 });
 
 function checkOWin(){
-    if(board[0][0] == "O" && board[0][1] == "O" && board[0][2] == "O"){
+    if(board[0][0] == "O" && board[0][1] == "O" && board[0][2] == "O" && !endGame){
         document.querySelector(".o-win").classList.add("show");
+        endGame = true;
         document.getElementById("win-audio").play();
         winCounterO += 1;
         displayWinCounter();
-    } else if(board[1][0] == "O" && board[1][1] == "O" && board[1][2] == "O"){
+    } else if(board[1][0] == "O" && board[1][1] == "O" && board[1][2] == "O" && !endGame){
         document.querySelector(".o-win").classList.add("show");
+        endGame = true;
         document.getElementById("win-audio").play();
         winCounterO += 1;
         displayWinCounter();
-    } else if(board[2][0] == "O" && board[2][1] == "O" && board[2][2] == "O"){
+    } else if(board[2][0] == "O" && board[2][1] == "O" && board[2][2] == "O" && !endGame){
         document.querySelector(".o-win").classList.add("show");
+        endGame = true;
         document.getElementById("win-audio").play();
         winCounterO += 1;
         displayWinCounter();
-    } else if(board[0][0] == "O" && board[1][0] == "O" && board [2][0] == "O"){
+    } else if(board[0][0] == "O" && board[1][0] == "O" && board [2][0] == "O" && !endGame){
         document.querySelector(".o-win").classList.add("show");
+        endGame = true;
         document.getElementById("win-audio").play();
         winCounterO += 1;
         displayWinCounter();
-    } else if(board[0][1] == "O" && board[1][1] == "O" && board [2][1] == "O"){
+    } else if(board[0][1] == "O" && board[1][1] == "O" && board [2][1] == "O" && !endGame){
         document.querySelector(".o-win").classList.add("show");
+        endGame = true;
         document.getElementById("win-audio").play();
         winCounterO += 1;
         displayWinCounter();
-    } else if(board[0][2] == "O" && board[1][2] == "O" && board [2][2] == "O"){
+    } else if(board[0][2] == "O" && board[1][2] == "O" && board [2][2] == "O" && !endGame){
         document.querySelector(".o-win").classList.add("show");
+        endGame = true;
         document.getElementById("win-audio").play();
         winCounterO += 1;
         displayWinCounter();
-    } else if(board[0][0] == "O" && board[1][1] == "O" && board[2][2] == "O"){
+    } else if(board[0][0] == "O" && board[1][1] == "O" && board[2][2] == "O" && !endGame){
         document.querySelector(".o-win").classList.add("show");
+        endGame = true;
         document.getElementById("win-audio").play();
         winCounterO += 1;
         displayWinCounter();
-    } else if(board[0][2] == "O" && board[1][1] == "O" && board[2][0] == "O"){
+    } else if(board[0][2] == "O" && board[1][1] == "O" && board[2][0] == "O" && !endGame){
         document.querySelector(".o-win").classList.add("show");
+        endGame = true;
         document.getElementById("win-audio").play();
         winCounterO += 1;
         displayWinCounter();
@@ -461,43 +471,51 @@ function checkOWin(){
 }
 
 function checkXWin(){
-    if(board[0][0] == "X" && board[0][1] == "X" && board[0][2] == "X"){
+    if(board[0][0] == "X" && board[0][1] == "X" && board[0][2] == "X" && !endGame){
         document.querySelector(".x-win").classList.add("show");
+        endGame = true;
         document.getElementById("win-audio").play();
         winCounterX += 1;
         displayWinCounter();
-    } else if(board[1][0] == "X" && board[1][1] == "X" && board[1][2] == "X"){
+    } else if(board[1][0] == "X" && board[1][1] == "X" && board[1][2] == "X" && !endGame){
         document.querySelector(".x-win").classList.add("show");
+        endGame = true;
         document.getElementById("win-audio").play();
         winCounterX += 1;
         displayWinCounter();
-    } else if(board[2][0] == "X" && board[2][1] == "X" && board[2][2] == "X"){
+    } else if(board[2][0] == "X" && board[2][1] == "X" && board[2][2] == "X" && !endGame){
         document.querySelector(".x-win").classList.add("show");
+        endGame = true;
         document.getElementById("win-audio").play();
         winCounterX += 1;
         displayWinCounter();
-    } else if(board[0][0] == "X" && board[1][0] == "X" && board [2][0] == "X"){
+    } else if(board[0][0] == "X" && board[1][0] == "X" && board [2][0] == "X" && !endGame){
         document.querySelector(".x-win").classList.add("show");
+        endGame = true;
         document.getElementById("win-audio").play();
         winCounterX += 1;
         displayWinCounter();
-    } else if(board[0][1] == "X" && board[1][1] == "X" && board [2][1] == "X"){
+    } else if(board[0][1] == "X" && board[1][1] == "X" && board [2][1] == "X" && !endGame){
         document.querySelector(".x-win").classList.add("show");
+        endGame = true;
         document.getElementById("win-audio").play();
         winCounterX += 1;
         displayWinCounter();
-    } else if(board[0][2] == "X" && board[1][2] == "X" && board [2][2] == "X"){
+    } else if(board[0][2] == "X" && board[1][2] == "X" && board [2][2] == "X" && !endGame){
         document.querySelector(".x-win").classList.add("show");
+        endGame = true;
         document.getElementById("win-audio").play();
         winCounterX += 1;
         displayWinCounter();
-    } else if(board[0][0] == "X" && board[1][1] == "X" && board[2][2] == "X"){
+    } else if(board[0][0] == "X" && board[1][1] == "X" && board[2][2] == "X" && !endGame){
         document.querySelector(".x-win").classList.add("show");
+        endGame = true;
         document.getElementById("win-audio").play();
         winCounterX += 1;
         displayWinCounter();
-    } else if(board[0][2] == "X" && board[1][1] == "X" && board[2][0] == "X"){
+    } else if(board[0][2] == "X" && board[1][1] == "X" && board[2][0] == "X" && !endGame){
         document.querySelector(".x-win").classList.add("show");
+        endGame = true;
         document.getElementById("win-audio").play();
         winCounterX += 1;
         displayWinCounter();
