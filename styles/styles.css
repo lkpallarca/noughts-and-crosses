@@ -51,8 +51,150 @@ table {
   border-spacing: 0;
 }
 
-#grid-display {
-  width: 100%;
+#in-game-screen {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+#in-game-screen .in-game-info {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin-top: 15vh;
+}
+
+#in-game-screen .in-game-info.hide {
+  display: none;
+}
+
+#in-game-screen .in-game-info .current-player-moving {
+  font-size: 20px;
+  color: white;
+  margin-bottom: 20px;
+}
+
+#in-game-screen .in-game-info .in-game-player-x {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  cursor: pointer;
+  border-top-right-radius: 40px;
+  border-bottom-right-radius: 40px;
+  position: relative;
+  height: 33px;
+  width: 75px;
+  background-color: blue;
+  color: white;
+  -webkit-transition: 0.4s all ease-in-out;
+  transition: 0.4s all ease-in-out;
+  font-size: 0px;
+  padding: 12px 0 0 5px;
+}
+
+#in-game-screen .in-game-info .in-game-player-x #win-counter-x {
+  font-size: 20px;
+  -webkit-transition-delay: 0.4s;
+          transition-delay: 0.4s;
+}
+
+#in-game-screen .in-game-info .in-game-player-x.hoverable:hover {
+  width: 220px;
+  font-size: 20px;
+}
+
+#in-game-screen .in-game-info .in-game-player-x.hoverable:hover #win-counter-x {
+  font-size: 0;
+  -webkit-transition-delay: 0.1s;
+          transition-delay: 0.1s;
+}
+
+#in-game-screen .in-game-info .in-game-player-o {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  cursor: pointer;
+  margin-top: 20px;
+  border-top-right-radius: 40px;
+  border-bottom-right-radius: 40px;
+  position: relative;
+  height: 33px;
+  width: 75px;
+  background-color: red;
+  color: white;
+  -webkit-transition: 0.4s all ease-in-out;
+  transition: 0.4s all ease-in-out;
+  font-size: 0px;
+  padding: 12px 0 0 5px;
+}
+
+#in-game-screen .in-game-info .in-game-player-o #win-counter-o {
+  font-size: 20px;
+  -webkit-transition-delay: 0.4s;
+          transition-delay: 0.4s;
+}
+
+#in-game-screen .in-game-info .in-game-player-o.hoverable:hover {
+  width: 220px;
+  font-size: 20px;
+}
+
+#in-game-screen .in-game-info .in-game-player-o.hoverable:hover #win-counter-o {
+  font-size: 0;
+  -webkit-transition-delay: 0.1s;
+          transition-delay: 0.1s;
+}
+
+#in-game-screen .in-game-info .in-game-player-draw {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  margin-top: 20px;
+  border-top-right-radius: 40px;
+  border-bottom-right-radius: 40px;
+  position: relative;
+  height: 33px;
+  width: 77px;
+  background-color: #4d4d4d;
+  color: white;
+  font-size: 18px;
+  padding: 12px 0 0 5px;
+}
+
+#in-game-screen .in-game-info .x-player-info-image {
+  position: absolute;
+  top: 2px;
+  right: -33px;
+  height: 40px;
+  width: 40px;
+}
+
+#in-game-screen .in-game-info .o-player-info-image {
+  position: absolute;
+  top: -2px;
+  right: -40px;
+  height: 50px;
+  width: 50px;
+}
+
+#in-game-screen #grid-display {
+  position: absolute;
+  margin-top: 20vh;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  width: auto;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -62,16 +204,15 @@ table {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  margin-top: 25vh;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
 }
 
-#grid-display .play-area {
-  height: 50vh;
-  width: 30vw;
+#in-game-screen #grid-display .play-area {
+  height: 60vh;
+  width: 40vw;
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: (1fr)[3];
@@ -80,7 +221,7 @@ table {
       grid-template-rows: repeat(3, 1fr);
 }
 
-#grid-display .play-area .xo-grid {
+#in-game-screen #grid-display .play-area .xo-grid {
   cursor: pointer;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -91,177 +232,250 @@ table {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  border: 2px solid white;
+  border: 3px solid white;
 }
 
-#grid-display .play-area .xo-grid .x .x-image {
-  height: 65px;
-  width: 65px;
+#in-game-screen #grid-display .play-area .xo-grid.red {
+  border: 2px solid red;
 }
 
-#grid-display .play-area .xo-grid .x .x-image.top-left {
+#in-game-screen #grid-display .play-area .xo-grid.blue {
+  border: 2px solid blue;
+}
+
+#in-game-screen #grid-display .play-area .xo-grid .x .x-image {
+  height: 75px;
+  width: 75px;
+}
+
+#in-game-screen #grid-display .play-area .xo-grid .x .x-image.top-left {
   display: none;
 }
 
-#grid-display .play-area .xo-grid .x .x-image.top-left.show {
+#in-game-screen #grid-display .play-area .xo-grid .x .x-image.top-left.show {
   display: block;
 }
 
-#grid-display .play-area .xo-grid .x .x-image.top-middle {
+#in-game-screen #grid-display .play-area .xo-grid .x .x-image.top-middle {
   display: none;
 }
 
-#grid-display .play-area .xo-grid .x .x-image.top-middle.show {
+#in-game-screen #grid-display .play-area .xo-grid .x .x-image.top-middle.show {
   display: block;
 }
 
-#grid-display .play-area .xo-grid .x .x-image.top-right {
+#in-game-screen #grid-display .play-area .xo-grid .x .x-image.top-right {
   display: none;
 }
 
-#grid-display .play-area .xo-grid .x .x-image.top-right.show {
+#in-game-screen #grid-display .play-area .xo-grid .x .x-image.top-right.show {
   display: block;
 }
 
-#grid-display .play-area .xo-grid .x .x-image.middle-left {
+#in-game-screen #grid-display .play-area .xo-grid .x .x-image.middle-left {
   display: none;
 }
 
-#grid-display .play-area .xo-grid .x .x-image.middle-left.show {
+#in-game-screen #grid-display .play-area .xo-grid .x .x-image.middle-left.show {
   display: block;
 }
 
-#grid-display .play-area .xo-grid .x .x-image.center {
+#in-game-screen #grid-display .play-area .xo-grid .x .x-image.center {
   display: none;
 }
 
-#grid-display .play-area .xo-grid .x .x-image.center.show {
+#in-game-screen #grid-display .play-area .xo-grid .x .x-image.center.show {
   display: block;
 }
 
-#grid-display .play-area .xo-grid .x .x-image.middle-right {
+#in-game-screen #grid-display .play-area .xo-grid .x .x-image.middle-right {
   display: none;
 }
 
-#grid-display .play-area .xo-grid .x .x-image.middle-right.show {
+#in-game-screen #grid-display .play-area .xo-grid .x .x-image.middle-right.show {
   display: block;
 }
 
-#grid-display .play-area .xo-grid .x .x-image.bottom-left {
+#in-game-screen #grid-display .play-area .xo-grid .x .x-image.bottom-left {
   display: none;
 }
 
-#grid-display .play-area .xo-grid .x .x-image.bottom-left.show {
+#in-game-screen #grid-display .play-area .xo-grid .x .x-image.bottom-left.show {
   display: block;
 }
 
-#grid-display .play-area .xo-grid .x .x-image.bottom-middle {
+#in-game-screen #grid-display .play-area .xo-grid .x .x-image.bottom-middle {
   display: none;
 }
 
-#grid-display .play-area .xo-grid .x .x-image.bottom-middle.show {
+#in-game-screen #grid-display .play-area .xo-grid .x .x-image.bottom-middle.show {
   display: block;
 }
 
-#grid-display .play-area .xo-grid .x .x-image.bottom-right {
+#in-game-screen #grid-display .play-area .xo-grid .x .x-image.bottom-right {
   display: none;
 }
 
-#grid-display .play-area .xo-grid .x .x-image.bottom-right.show {
+#in-game-screen #grid-display .play-area .xo-grid .x .x-image.bottom-right.show {
   display: block;
 }
 
-#grid-display .play-area .xo-grid .o .o-image {
-  height: 90px;
-  width: 90px;
+#in-game-screen #grid-display .play-area .xo-grid .o .o-image {
+  height: 100px;
+  width: 100px;
 }
 
-#grid-display .play-area .xo-grid .o .o-image.top-left {
+#in-game-screen #grid-display .play-area .xo-grid .o .o-image.top-left {
   display: none;
 }
 
-#grid-display .play-area .xo-grid .o .o-image.top-left.show {
+#in-game-screen #grid-display .play-area .xo-grid .o .o-image.top-left.show {
   display: block;
 }
 
-#grid-display .play-area .xo-grid .o .o-image.top-middle {
+#in-game-screen #grid-display .play-area .xo-grid .o .o-image.top-middle {
   display: none;
 }
 
-#grid-display .play-area .xo-grid .o .o-image.top-middle.show {
+#in-game-screen #grid-display .play-area .xo-grid .o .o-image.top-middle.show {
   display: block;
 }
 
-#grid-display .play-area .xo-grid .o .o-image.top-right {
+#in-game-screen #grid-display .play-area .xo-grid .o .o-image.top-right {
   display: none;
 }
 
-#grid-display .play-area .xo-grid .o .o-image.top-right.show {
+#in-game-screen #grid-display .play-area .xo-grid .o .o-image.top-right.show {
   display: block;
 }
 
-#grid-display .play-area .xo-grid .o .o-image.middle-left {
+#in-game-screen #grid-display .play-area .xo-grid .o .o-image.middle-left {
   display: none;
 }
 
-#grid-display .play-area .xo-grid .o .o-image.middle-left.show {
+#in-game-screen #grid-display .play-area .xo-grid .o .o-image.middle-left.show {
   display: block;
 }
 
-#grid-display .play-area .xo-grid .o .o-image.center {
+#in-game-screen #grid-display .play-area .xo-grid .o .o-image.center {
   display: none;
 }
 
-#grid-display .play-area .xo-grid .o .o-image.center.show {
+#in-game-screen #grid-display .play-area .xo-grid .o .o-image.center.show {
   display: block;
 }
 
-#grid-display .play-area .xo-grid .o .o-image.middle-right {
+#in-game-screen #grid-display .play-area .xo-grid .o .o-image.middle-right {
   display: none;
 }
 
-#grid-display .play-area .xo-grid .o .o-image.middle-right.show {
+#in-game-screen #grid-display .play-area .xo-grid .o .o-image.middle-right.show {
   display: block;
 }
 
-#grid-display .play-area .xo-grid .o .o-image.bottom-left {
+#in-game-screen #grid-display .play-area .xo-grid .o .o-image.bottom-left {
   display: none;
 }
 
-#grid-display .play-area .xo-grid .o .o-image.bottom-left.show {
+#in-game-screen #grid-display .play-area .xo-grid .o .o-image.bottom-left.show {
   display: block;
 }
 
-#grid-display .play-area .xo-grid .o .o-image.bottom-middle {
+#in-game-screen #grid-display .play-area .xo-grid .o .o-image.bottom-middle {
   display: none;
 }
 
-#grid-display .play-area .xo-grid .o .o-image.bottom-middle.show {
+#in-game-screen #grid-display .play-area .xo-grid .o .o-image.bottom-middle.show {
   display: block;
 }
 
-#grid-display .play-area .xo-grid .o .o-image.bottom-right {
+#in-game-screen #grid-display .play-area .xo-grid .o .o-image.bottom-right {
   display: none;
 }
 
-#grid-display .play-area .xo-grid .o .o-image.bottom-right.show {
+#in-game-screen #grid-display .play-area .xo-grid .o .o-image.bottom-right.show {
   display: block;
 }
 
-#grid-display .play-area .top {
+#in-game-screen #grid-display .play-area .top {
   border-top: none;
 }
 
-#grid-display .play-area .left {
+#in-game-screen #grid-display .play-area .left {
   border-left: none;
 }
 
-#grid-display .play-area .right {
+#in-game-screen #grid-display .play-area .right {
   border-right: none;
 }
 
-#grid-display .play-area .bottom {
+#in-game-screen #grid-display .play-area .bottom {
   border-bottom: none;
+}
+
+#in-game-screen #grid-display #trigger {
+  margin-top: 40px;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  color: white;
+  font-size: 20px;
+}
+
+#in-game-screen #grid-display #trigger:hover {
+  text-shadow: 0 0 10px white;
+}
+
+#in-game-screen .history-display-wrapper {
+  position: relative;
+  width: 300px;
+}
+
+#in-game-screen .history-display-wrapper .history-display-hover {
+  position: absolute;
+  right: 0;
+  margin-top: 15vh;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  cursor: pointer;
+  border-top-left-radius: 40px;
+  border-bottom-left-radius: 40px;
+  height: 33px;
+  width: 160px;
+  background-color: white;
+  color: black;
+  font-size: 18px;
+  padding: 12px 0 0 10px;
+  -webkit-transition: 0.4s width;
+  transition: 0.4s width;
+}
+
+#in-game-screen .history-display-wrapper .history-display-hover.elongate {
+  width: 300px;
+}
+
+#in-game-screen .history-display-wrapper #history-display {
+  margin-top: 24vh;
+  height: auto;
+  width: auto;
+  color: white;
+  visibility: visible;
+  -webkit-transition-delay: 0.4s;
+          transition-delay: 0.4s;
+}
+
+#in-game-screen .history-display-wrapper #history-display div {
+  margin-top: 10px;
+}
+
+#in-game-screen .history-display-wrapper #history-display.hidden {
+  visibility: hidden;
+  -webkit-transition-delay: 0.01s;
+          transition-delay: 0.01s;
 }
 
 #win-modal .o-win {
@@ -269,7 +483,7 @@ table {
   position: absolute;
   width: auto;
   left: 50%;
-  top: 15%;
+  top: 10%;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
   z-index: 2;
@@ -295,7 +509,7 @@ table {
   position: absolute;
   width: auto;
   left: 50%;
-  top: 15%;
+  top: 10%;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
   z-index: 2;
@@ -321,7 +535,7 @@ table {
   position: absolute;
   width: auto;
   left: 50%;
-  top: 15%;
+  top: 10%;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
   z-index: 2;
@@ -348,6 +562,7 @@ table {
   width: 100vw;
   height: 100vh;
   background-color: black;
+  z-index: 5;
 }
 
 #startup-modal.hide {
@@ -578,5 +793,24 @@ table {
 #startup-modal .game-start.show {
   visibility: visible;
   opacity: 1;
+}
+
+#vignette {
+  position: fixed;
+  bottom: 0;
+  height: 30px;
+  width: 100%;
+  background-image: -webkit-gradient(linear, left bottom, left top, from(#333333), to(black));
+  background-image: linear-gradient(to top, #333333, black);
+}
+
+#vignette.red {
+  background-image: -webkit-gradient(linear, left bottom, left top, from(red), to(black));
+  background-image: linear-gradient(to top, red, black);
+}
+
+#vignette.blue {
+  background-image: -webkit-gradient(linear, left bottom, left top, from(blue), to(black));
+  background-image: linear-gradient(to top, blue, black);
 }
 /*# sourceMappingURL=styles.css.map */
