@@ -227,9 +227,9 @@ function removeHoverable() {
 
 function writingHistory(player, y, x = null){
     if(x){
-        historyBoard.unshift(`Player ${player} marked the ${y} ${x}.`);
+        historyBoard.unshift(`${turnCount}. Player ${player} marked the ${y} ${x}.`);
     } else {
-        historyBoard.unshift(`Player ${player} marked the ${y}.`);
+        historyBoard.unshift(`${turnCount}. Player ${player} marked the ${y}.`);
     }
     const divy = document.createElement("div");
     divy.innerHTML = historyBoard[0];
@@ -241,14 +241,14 @@ gridTopLeft.addEventListener("click", () => {
     if (board[0][0] == "" && !document.querySelector(".o-win").classList.contains("show") && !document.querySelector(".x-win").classList.contains("show") && turn == 0) {
         document.getElementById("o-audio").play();
         board[0][0] = "O";
-        writingHistory("O", "TOP", "LEFT");
         turnCount += 1;
+        writingHistory("O", "TOP", "LEFT");
         inputInBoard(board[0][0], inputOTopLeft, inputXTopLeft);
     } else if(board[0][0] == "" && !document.querySelector(".o-win").classList.contains("show") && !document.querySelector(".x-win").classList.contains("show") && turn == 1){
         document.getElementById("x-audio").play();
         board[0][0] = "X";
-        writingHistory("X", "TOP", "LEFT");
         turnCount += 1;
+        writingHistory("X", "TOP", "LEFT");
         inputInBoard(board[0][0], inputOTopLeft, inputXTopLeft);
     }
     checkOWin();
@@ -261,14 +261,14 @@ gridTopMiddle.addEventListener("click", () =>{
     if (board[0][1] == "" && !document.querySelector(".o-win").classList.contains("show") && !document.querySelector(".x-win").classList.contains("show") && turn == 0) {
         document.getElementById("o-audio").play();
         board[0][1] = "O";
-        writingHistory("O", "TOP", "MIDDLE");
         turnCount += 1;
+        writingHistory("O", "TOP", "MIDDLE");
         inputInBoard(board[0][1], inputOTopMiddle, inputXTopMiddle);
     } else if(board[0][1] == "" && !document.querySelector(".o-win").classList.contains("show") && !document.querySelector(".x-win").classList.contains("show") && turn == 1){
         document.getElementById("x-audio").play();
         board[0][1] = "X";
-        writingHistory("X", "TOP", "MIDDLE");
         turnCount += 1;
+        writingHistory("X", "TOP", "MIDDLE");
         inputInBoard(board[0][1], inputOTopMiddle, inputXTopMiddle);
     }
     checkOWin();
@@ -281,14 +281,14 @@ gridTopRight.addEventListener("click", () =>{
     if (board[0][2] == "" && !document.querySelector(".o-win").classList.contains("show") && !document.querySelector(".x-win").classList.contains("show") && turn == 0) {
         document.getElementById("o-audio").play();
         board[0][2] = "O";
-        writingHistory("O", "TOP", "RIGHT");
         turnCount += 1;
+        writingHistory("O", "TOP", "RIGHT");
         inputInBoard(board[0][2], inputOTopRight, inputXTopRight);
     } else if(board[0][2] == "" && !document.querySelector(".o-win").classList.contains("show") && !document.querySelector(".x-win").classList.contains("show") && turn == 1){
         document.getElementById("x-audio").play();
         board[0][2] = "X";
-        writingHistory("X", "TOP", "RIGHT");
         turnCount += 1;
+        writingHistory("X", "TOP", "RIGHT");
         inputInBoard(board[0][2], inputOTopRight, inputXTopRight);
     }
     checkOWin();
@@ -301,14 +301,14 @@ gridMiddleLeft.addEventListener("click", () =>{
     if (board[1][0] == "" && !document.querySelector(".o-win").classList.contains("show") && !document.querySelector(".x-win").classList.contains("show") && turn == 0) {
         document.getElementById("o-audio").play();
         board[1][0] = "O";
-        writingHistory("O", "MIDDLE", "LEFT");
         turnCount += 1;
+        writingHistory("O", "MIDDLE", "LEFT");
         inputInBoard(board[1][0], inputOMiddleLeft, inputXMiddleLeft);
     } else if(board[1][0] == "" && !document.querySelector(".o-win").classList.contains("show") && !document.querySelector(".x-win").classList.contains("show") && turn == 1){
         document.getElementById("x-audio").play();
         board[1][0] = "X";
-        writingHistory("X", "MIDDLE", "LEFT");
         turnCount += 1;
+        writingHistory("X", "MIDDLE", "LEFT");
         inputInBoard(board[1][0], inputOMiddleLeft, inputXMiddleLeft);
     }
     checkOWin();
@@ -321,14 +321,14 @@ gridCenter.addEventListener("click", () =>{
     if (board[1][1] == "" && !document.querySelector(".o-win").classList.contains("show") && !document.querySelector(".x-win").classList.contains("show") && turn == 0) {
         document.getElementById("o-audio").play();
         board[1][1] = "O";
-        writingHistory("O", "CENTER");
         turnCount += 1;
+        writingHistory("O", "CENTER");
         inputInBoard(board[1][1], inputOCenter, inputXCenter);
     } else if(board[1][1] == "" && !document.querySelector(".o-win").classList.contains("show") && !document.querySelector(".x-win").classList.contains("show") && turn == 1){
         document.getElementById("x-audio").play();
         board[1][1] = "X";
-        writingHistory("X", "CENTER");
         turnCount += 1;
+        writingHistory("X", "CENTER");
         inputInBoard(board[1][1], inputOCenter, inputXCenter);
     }
     checkOWin();
@@ -341,14 +341,14 @@ gridMiddleRight.addEventListener("click", () =>{
     if (board[1][2] == "" && !document.querySelector(".o-win").classList.contains("show") && !document.querySelector(".x-win").classList.contains("show") && turn == 0) {
         document.getElementById("o-audio").play();
         board[1][2] = "O";
-        writingHistory("O", "MIDDLE", "RIGHT");
         turnCount += 1;
+        writingHistory("O", "MIDDLE", "RIGHT");
         inputInBoard(board[1][2], inputOMiddleRight, inputXMiddleRight);
     } else if(board[1][2] == "" && !document.querySelector(".o-win").classList.contains("show") && !document.querySelector(".x-win").classList.contains("show") && turn == 1){
         document.getElementById("x-audio").play();
         board[1][2] = "X";
-        writingHistory("X", "MIDDLE", "RIGHT");
         turnCount += 1;
+        writingHistory("X", "MIDDLE", "RIGHT");
         inputInBoard(board[1][2], inputOMiddleRight, inputXMiddleRight);
     }
     checkOWin();
@@ -361,14 +361,14 @@ gridBottomLeft.addEventListener("click", () =>{
     if (board[2][0] == "" && !document.querySelector(".o-win").classList.contains("show") && !document.querySelector(".x-win").classList.contains("show") && turn == 0) {
         document.getElementById("o-audio").play();
         board[2][0] = "O";
-        writingHistory("O", "BOTTOM", "LEFT");
         turnCount += 1;
+        writingHistory("O", "BOTTOM", "LEFT");
         inputInBoard(board[2][0], inputOBottomLeft, inputXBottomLeft);
     } else if(board[2][0] == "" && !document.querySelector(".o-win").classList.contains("show") && !document.querySelector(".x-win").classList.contains("show") && turn == 1){
         document.getElementById("x-audio").play();
         board[2][0] = "X";
-        writingHistory("X", "BOTTOM", "LEFT");
         turnCount += 1;
+        writingHistory("X", "BOTTOM", "LEFT");
         inputInBoard(board[2][0], inputOBottomLeft, inputXBottomLeft);
     }
     checkOWin();
@@ -381,14 +381,14 @@ gridBottomMiddle.addEventListener("click", () =>{
     if (board[2][1] == "" && !document.querySelector(".o-win").classList.contains("show") && !document.querySelector(".x-win").classList.contains("show") && turn == 0) {
         document.getElementById("o-audio").play();
         board[2][1] = "O";
-        writingHistory("O", "BOTTOM", "MIDDLE");
         turnCount += 1;
+        writingHistory("O", "BOTTOM", "MIDDLE");
         inputInBoard(board[2][1], inputOBottomMiddle, inputXBottomMiddle);
     } else if(board[2][1] == "" && !document.querySelector(".o-win").classList.contains("show") && !document.querySelector(".x-win").classList.contains("show") && turn == 1){
         document.getElementById("x-audio").play();
         board[2][1] = "X";
-        writingHistory("X", "BOTTOM", "MIDDLE");
         turnCount += 1;
+        writingHistory("X", "BOTTOM", "MIDDLE");
         inputInBoard(board[2][1], inputOBottomMiddle, inputXBottomMiddle);
     }
     checkXWin();
@@ -401,14 +401,14 @@ gridBottomRight.addEventListener("click", () =>{
     if (board[2][2] == "" && !document.querySelector(".o-win").classList.contains("show") && !document.querySelector(".x-win").classList.contains("show") && turn == 0) {
         document.getElementById("o-audio").play();
         board[2][2] = "O";
-        writingHistory("O", "BOTTOM", "RIGHT");
         turnCount += 1;
+        writingHistory("O", "BOTTOM", "RIGHT");
         inputInBoard(board[2][2], inputOBottomRight, inputXBottomRight);
     } else if(board[2][2] == "" && !document.querySelector(".o-win").classList.contains("show") && !document.querySelector(".x-win").classList.contains("show") && turn == 1){
         document.getElementById("x-audio").play();
         board[2][2] = "X";
-        writingHistory("X", "BOTTOM", "RIGHT");
         turnCount += 1;
+        writingHistory("X", "BOTTOM", "RIGHT");
         inputInBoard(board[2][2], inputOBottomRight, inputXBottomRight);
     }
     checkOWin();
