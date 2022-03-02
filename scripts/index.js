@@ -113,6 +113,7 @@ function removePageModal(){
 const startGameTrigger = document.querySelector(".game-start");
 startGameTrigger.addEventListener("click", () =>{
     if(playerSelectO.classList.contains("selected") || playerSelectX.classList.contains("selected")){
+        document.getElementById("start-audio").play();
         removePageModal();
         checkCurrentlyMovingPlayer();
     }
