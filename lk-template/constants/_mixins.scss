@@ -5,3 +5,22 @@
 @mixin show-input {
     display: block;
 }
+
+@mixin flickering($x, $y) {
+    @keyframes strobe {
+        0%{
+            $x: 2px solid hsl(0, 0%, 50%);
+            $y: 2px solid hsl(0, 0%, 50%);
+        }
+        50%{
+            $x: 2px solid hsl(0, 0%, 75%);
+            $y: 2px solid hsl(0, 0%, 75%);
+        }
+        100%{
+            $x: 2px solid hsl(0, 0%, 100%);
+            $y: 2px solid hsl(0, 0%, 100%);
+        }
+    }
+
+    animation: strobe 0.7s infinite;
+}

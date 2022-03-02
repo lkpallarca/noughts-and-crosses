@@ -1,0 +1,24 @@
+#vignette {
+    position: fixed;
+    bottom: 0;
+    height: 30px;
+    width: 100%;
+    background-image: linear-gradient(to top,
+    hsl(0, 0%, 20%),
+    rgb(0, 0, 0)
+    );
+
+    &.red {
+        background-image: linear-gradient(to top,
+        red,
+        rgb(0, 0, 0)
+        );
+    }
+
+    &.blue {
+        background-image: linear-gradient(to top,
+        blue,
+        rgb(0, 0, 0)
+        );
+    }
+}

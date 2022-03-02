@@ -1,198 +1,384 @@
-#grid-display {
-    width: 100%;
+#in-game-screen {
+    position: relative;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 25vh;
-    flex-direction: column;
+    justify-content: space-between;
 
-    .play-area {
-        height: 50vh;
-        width: 30vw;
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        grid-template-rows: repeat(3, 1fr);
-
-        .xo-grid {
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 2px solid white;
-
-            .x {
-                .x-image {
-                    height: 65px;
-                    width: 65px;
-
-                    &.top-left {
-                        @include player-input;
-    
-                        &.show {
-                            @include show-input;
-                        }
-                    }
-
-                    &.top-middle {
-                        @include player-input;
-    
-                        &.show {
-                            @include show-input;
-                        }
-                    }
-
-                    &.top-right {
-                        @include player-input;
-    
-                        &.show {
-                            @include show-input;
-                        }
-                    }
-
-                    &.middle-left {
-                        @include player-input;
-    
-                        &.show {
-                            @include show-input;
-                        }
-                    }
-
-                    &.center {
-                        @include player-input;
-    
-                        &.show {
-                            @include show-input;
-                        }
-                    }
-
-                    &.middle-right {
-                        @include player-input;
-    
-                        &.show {
-                            @include show-input;
-                        }
-                    }
-
-                    &.bottom-left {
-                        @include player-input;
-    
-                        &.show {
-                            @include show-input;
-                        }
-                    }
-
-                    &.bottom-middle {
-                        @include player-input;
-    
-                        &.show {
-                            @include show-input;
-                        }
-                    }
-
-                    &.bottom-right {
-                        @include player-input;
-    
-                        &.show {
-                            @include show-input;
-                        }
-                    }                    
-                }
-            }
-
-            .o {
-                .o-image {
-                    height: 90px;
-                    width: 90px;
-
-                    &.top-left {
-                        @include player-input;
-    
-                        &.show {
-                            @include show-input;
-                        }
-                    }
-
-                    &.top-middle {
-                        @include player-input;
-    
-                        &.show {
-                            @include show-input;
-                        }
-                    }
-
-                    &.top-right {
-                        @include player-input;
-    
-                        &.show {
-                            @include show-input;
-                        }
-                    }
-
-                    &.middle-left {
-                        @include player-input;
-    
-                        &.show {
-                            @include show-input;
-                        }
-                    }
-
-                    &.center {
-                        @include player-input;
-    
-                        &.show {
-                            @include show-input;
-                        }
-                    }
-
-                    &.middle-right {
-                        @include player-input;
-    
-                        &.show {
-                            @include show-input;
-                        }
-                    }
-
-                    &.bottom-left {
-                        @include player-input;
-    
-                        &.show {
-                            @include show-input;
-                        }
-                    }
-
-                    &.bottom-middle {
-                        @include player-input;
-    
-                        &.show {
-                            @include show-input;
-                        }
-                    }
-
-                    &.bottom-right {
-                        @include player-input;
-    
-                        &.show {
-                            @include show-input;
-                        }
-                    }
-                }
-            }
-        }
-
-        .top {
-            border-top: none;
-        }
-
-        .left {
-            border-left: none;
-        }
+    .in-game-info {
+        display: flex;
+        flex-direction: column;
+        margin-top: 15vh;
         
-        .right {
-            border-right: none;
+        &.hide {
+            display: none;
         }
 
-        .bottom {
-            border-bottom: none;
+        .current-player-moving {
+            font-size: 20px;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .in-game-player-x {
+            user-select: none;
+            cursor: pointer;
+            border-top-right-radius: 40px;
+            border-bottom-right-radius: 40px;
+            position: relative;
+            height: 33px;
+            width: 75px;
+            background-color: blue;
+            color: white;
+            transition: 0.4s all ease-in-out;
+            font-size: 0px;
+            padding: 12px 0 0 5px;
+
+            #win-counter-x {
+                font-size: 20px;
+                transition-delay: 0.4s;
+            }
+
+            &.hoverable{
+                &:hover {
+                    width: 220px;
+                    font-size: 20px;
+
+                    #win-counter-x {
+                        font-size: 0;
+                        transition-delay: 0.1s;
+                    }
+                }
+            }
+
+        }
+
+        .in-game-player-o {
+            user-select: none;
+            cursor: pointer;
+            margin-top: 20px;
+            border-top-right-radius: 40px;
+            border-bottom-right-radius: 40px;
+            position: relative;
+            height: 33px;
+            width: 75px;
+            background-color: red;
+            color: white;
+            transition: 0.4s all ease-in-out;
+            font-size: 0px;
+            padding: 12px 0 0 5px;
+
+            #win-counter-o {
+                font-size: 20px;
+                transition-delay: 0.4s;
+            }
+
+            &.hoverable{
+                &:hover {
+                    width: 220px;
+                    font-size: 20px;
+                
+                    #win-counter-o {
+                        font-size: 0;
+                        transition-delay: 0.1s;
+                    }
+                }
+            }
+        }
+
+        .in-game-player-draw {
+            user-select: none;
+            margin-top: 20px;
+            border-top-right-radius: 40px;
+            border-bottom-right-radius: 40px;
+            position: relative;
+            height: 33px;
+            width: 77px;
+            background-color: hsl(0, 0%, 30%);
+            color: white;
+            font-size: 18px;
+            padding: 12px 0 0 5px;
+        }
+
+        .x-player-info-image {
+            position: absolute;
+            top: 2px;
+            right: -33px;
+            height: 40px;
+            width: 40px;
+        }
+
+        .o-player-info-image {
+            position: absolute;
+            top: -2px;
+            right: -40px;
+            height: 50px;
+            width: 50px;
         }
     }
+
+    #grid-display {
+        position: absolute;
+        margin-top: 20vh;
+        left: 50%;
+        transform: translateX(-50%);
+        width: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    
+        .play-area {
+            height: 60vh;
+            width: 40vw;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+            
+            .xo-grid {
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border: 3px solid white;
+
+                &.red {
+                    border: 2px solid red;
+                }
+
+                &.blue {
+                    border: 2px solid blue;
+                }
+
+                .x {
+                    .x-image {
+                        height: 75px;
+                        width: 75px;
+    
+                        &.top-left {
+                            @include player-input;
+        
+                            &.show {
+                                @include show-input;
+                            }
+                        }
+    
+                        &.top-middle {
+                            @include player-input;
+        
+                            &.show {
+                                @include show-input;
+                            }
+                        }
+    
+                        &.top-right {
+                            @include player-input;
+        
+                            &.show {
+                                @include show-input;
+                            }
+                        }
+    
+                        &.middle-left {
+                            @include player-input;
+        
+                            &.show {
+                                @include show-input;
+                            }
+                        }
+    
+                        &.center {
+                            @include player-input;
+        
+                            &.show {
+                                @include show-input;
+                            }
+                        }
+    
+                        &.middle-right {
+                            @include player-input;
+        
+                            &.show {
+                                @include show-input;
+                            }
+                        }
+    
+                        &.bottom-left {
+                            @include player-input;
+        
+                            &.show {
+                                @include show-input;
+                            }
+                        }
+    
+                        &.bottom-middle {
+                            @include player-input;
+        
+                            &.show {
+                                @include show-input;
+                            }
+                        }
+    
+                        &.bottom-right {
+                            @include player-input;
+        
+                            &.show {
+                                @include show-input;
+                            }
+                        }                    
+                    }
+                }
+    
+                .o {
+                    .o-image {
+                        height: 100px;
+                        width: 100px;
+    
+                        &.top-left {
+                            @include player-input;
+        
+                            &.show {
+                                @include show-input;
+                            }
+                        }
+    
+                        &.top-middle {
+                            @include player-input;
+        
+                            &.show {
+                                @include show-input;
+                            }
+                        }
+    
+                        &.top-right {
+                            @include player-input;
+        
+                            &.show {
+                                @include show-input;
+                            }
+                        }
+    
+                        &.middle-left {
+                            @include player-input;
+        
+                            &.show {
+                                @include show-input;
+                            }
+                        }
+    
+                        &.center {
+                            @include player-input;
+        
+                            &.show {
+                                @include show-input;
+                            }
+                        }
+    
+                        &.middle-right {
+                            @include player-input;
+        
+                            &.show {
+                                @include show-input;
+                            }
+                        }
+    
+                        &.bottom-left {
+                            @include player-input;
+        
+                            &.show {
+                                @include show-input;
+                            }
+                        }
+    
+                        &.bottom-middle {
+                            @include player-input;
+        
+                            &.show {
+                                @include show-input;
+                            }
+                        }
+    
+                        &.bottom-right {
+                            @include player-input;
+        
+                            &.show {
+                                @include show-input;
+                            }
+                        }
+                    }
+                }
+            }
+    
+            .top {
+                border-top: none;
+            }
+    
+            .left {
+                border-left: none;
+            }
+            
+            .right {
+                border-right: none;
+            }
+    
+            .bottom {
+                border-bottom: none;
+            }
+        }
+    
+        #trigger {
+            margin-top: 40px;
+            cursor: pointer;
+            user-select: none;
+            color: white;
+            font-size: 20px;
+    
+            &:hover {
+                text-shadow: 0 0 10px hsl(0, 0%, 100%);
+            }
+        }
+    }
+
+    .history-display-wrapper {
+        position: relative;
+        width: 300px;
+
+        .history-display-hover {
+            position: absolute;
+            right: 0;
+            margin-top: 15vh;
+            user-select: none;
+            cursor: pointer;
+            border-top-left-radius: 40px;
+            border-bottom-left-radius: 40px;
+            height: 33px;
+            width: 160px;
+            background-color: white;
+            color: black;
+            font-size: 18px;
+            padding: 12px 0 0 10px;
+            transition: 0.4s width;
+
+            &.elongate {
+                width: 300px;
+            }
+        }
+        
+        #history-display {
+            margin-top: 24vh;
+            height: auto;
+            width: auto;
+            color: white;
+            visibility: visible;
+            transition-delay: 0.4s;
+    
+            div {
+                margin-top: 10px;
+            }
+
+            &.hidden {
+                visibility: hidden;
+                transition-delay: 0.01s;
+            }
+        }
+    }
+
 }
