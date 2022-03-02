@@ -430,7 +430,7 @@ table {
 
 #in-game-screen .history-display-wrapper {
   position: relative;
-  width: 300px;
+  width: 315px;
 }
 
 #in-game-screen .history-display-wrapper .history-display-hover {
@@ -445,7 +445,7 @@ table {
   border-top-left-radius: 40px;
   border-bottom-left-radius: 40px;
   height: 33px;
-  width: 160px;
+  width: 165px;
   background-color: white;
   color: black;
   font-size: 18px;
@@ -455,7 +455,7 @@ table {
 }
 
 #in-game-screen .history-display-wrapper .history-display-hover.elongate {
-  width: 300px;
+  width: 330px;
 }
 
 #in-game-screen .history-display-wrapper #history-display {
@@ -470,6 +470,7 @@ table {
 
 #in-game-screen .history-display-wrapper #history-display div {
   margin-top: 10px;
+  font-size: 14px;
 }
 
 #in-game-screen .history-display-wrapper #history-display.hidden {

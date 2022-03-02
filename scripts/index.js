@@ -227,9 +227,9 @@ function removeHoverable() {
 
 function writingHistory(player, y, x = null){
     if(x){
-        historyBoard.unshift(`${turnCount}. Player ${player} marked the ${y} ${x}.`);
+        historyBoard.unshift(`Turn ${turnCount} 🠮 Player ${player} marked the ${y} ${x}.`);
     } else {
-        historyBoard.unshift(`${turnCount}. Player ${player} marked the ${y}.`);
+        historyBoard.unshift(`Turn ${turnCount} 🠮 Player ${player} marked the ${y}.`);
     }
     const divy = document.createElement("div");
     divy.innerHTML = historyBoard[0];
