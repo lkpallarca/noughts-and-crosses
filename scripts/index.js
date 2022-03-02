@@ -1,3 +1,27 @@
+const board = [
+    ["", "", ""],
+    ["", "", ""],
+    ["", "", ""]
+];
+
+let turn = 0;
+let turnCount = 0;
+let historyBoard = [];
+let winCounterX = 0;
+let winCounterO = 0;
+let drawCounter = 0;
+
+const winCounterXDisplay = document.getElementById("win-counter-x");
+const winCounterODisplay = document.getElementById("win-counter-o");
+const drawCounterDisplay = document.querySelector(".in-game-player-draw");
+
+function displayWinCounter(){
+    winCounterXDisplay.innerHTML = `Wins: ${winCounterX}`;
+    winCounterODisplay.innerHTML = `Wins: ${winCounterO}`;
+    drawCounterDisplay.innerHTML = `Draws: ${drawCounter}`;
+}
+
+
 function flickerSelect(){
     document.querySelector(".first-move-select").classList.toggle("flicker");
 }
@@ -22,10 +46,36 @@ function startPage(){
     }, 1000);
 
 }
-document.addEventListener("DOMContentLoaded", startPage);
+startPage();
+
+const inGameInfo = document.querySelector(".in-game-info");
+const currentlyMovingPlayer = document.querySelector(".current-player-moving");
+const inGamePlayerX = document.querySelector(".in-game-player-x");
+const inGamePlayerO = document.querySelector(".in-game-player-o");
+
+function checkCurrentlyMovingPlayer(){
+    if(turn == 0){
+        currentlyMovingPlayer.innerHTML = "Player O moves first";
+    } else if(turn == 1){
+        currentlyMovingPlayer.innerHTML = "Player X moves first";
+    }
+}
+
+inGamePlayerX.addEventListener("click", () =>{
+    if(turn == 0 && turnCount === 0){
+        turn = 1;
+        checkCurrentlyMovingPlayer();
+    }
+});
+
+inGamePlayerO.addEventListener("click", () =>{
+    if(turn == 1 && turnCount === 0){
+        turn = 0;
+        checkCurrentlyMovingPlayer();
+    }
+});
 
 
-let turn = 0;
 const playerSelectX = document.querySelector(".player-select-x");
 const playerSelectO = document.querySelector(".player-select-o");
 
@@ -48,6 +98,7 @@ playerSelectO.addEventListener("click", () =>{
 });
 
 function removePageModal(){
+    displayWinCounter();
     setTimeout(() => {
         document.getElementById("startup-modal").classList.add("hide");
     }, 1000);
@@ -63,16 +114,9 @@ const startGameTrigger = document.querySelector(".game-start");
 startGameTrigger.addEventListener("click", () =>{
     if(playerSelectO.classList.contains("selected") || playerSelectX.classList.contains("selected")){
         removePageModal();
+        checkCurrentlyMovingPlayer();
     }
 });
-
-const board = [
-    ["", "", ""],
-    ["", "", ""],
-    ["", "", ""]
-];
-
-let turnCount = 0;
 
 const gridTopLeft = document.querySelector(".xo-grid.top.left");
 const gridTopMiddle = document.querySelector(".xo-grid.top.middle");
@@ -108,8 +152,13 @@ const inputXBottomRight = document.querySelector(".x-image.bottom-right");
 const inputOBottomRight = document.querySelector(".o-image.bottom-right");
 
 function reset(){
+    document.querySelector(".history-display-hover").classList.remove("elongate");
+    document.getElementById("history-display").innerHTML = "";
+    document.getElementById("history-display").classList.add("hidden");
+    checkCurrentlyMovingPlayer();
     turnCount = 0;
-
+    inGamePlayerX.classList.add("hoverable");
+    inGamePlayerO.classList.add("hoverable");
     document.querySelector(".ox-draw").classList.remove("show");
     document.querySelector(".o-win").classList.remove("show");
     document.querySelector(".x-win").classList.remove("show");
@@ -143,6 +192,8 @@ function reset(){
     board[2][0] = "";
     board[2][1] = "";
     board[2][2] = "";
+
+    historyBoard = [];
 };
 
 document.getElementById("trigger").addEventListener("click", reset);
@@ -166,184 +217,245 @@ function inputInBoard(array, input1, input2){
     }
 }
 
+function removeHoverable() {
+    if (inGamePlayerX.classList.contains("hoverable") && inGamePlayerO.classList.contains("hoverable")){
+        inGamePlayerX.classList.remove("hoverable");
+        inGamePlayerO.classList.remove("hoverable");
+    }
+}
+
+function writingHistory(player, y, x = null){
+    if(x){
+        historyBoard.unshift(`Player ${player} marked the ${y} ${x}.`);
+    } else {
+        historyBoard.unshift(`Player ${player} marked the ${y}.`);
+    }
+    const divy = document.createElement("div");
+    divy.innerHTML = historyBoard[0];
+    document.getElementById("history-display").append(divy);
+}
+
 gridTopLeft.addEventListener("click", () => {
+    removeHoverable();
     if (board[0][0] == "" && !document.querySelector(".o-win").classList.contains("show") && !document.querySelector(".x-win").classList.contains("show") && turn == 0) {
         document.getElementById("o-audio").play();
         board[0][0] = "O";
+        writingHistory("O", "TOP", "LEFT");
         turnCount += 1;
         inputInBoard(board[0][0], inputOTopLeft, inputXTopLeft);
     } else if(board[0][0] == "" && !document.querySelector(".o-win").classList.contains("show") && !document.querySelector(".x-win").classList.contains("show") && turn == 1){
         document.getElementById("x-audio").play();
         board[0][0] = "X";
+        writingHistory("X", "TOP", "LEFT");
         turnCount += 1;
         inputInBoard(board[0][0], inputOTopLeft, inputXTopLeft);
     }
-    checkDraw();
     checkOWin();
     checkXWin();
+    checkDraw();
 });
 
 gridTopMiddle.addEventListener("click", () =>{
+    removeHoverable();
     if (board[0][1] == "" && !document.querySelector(".o-win").classList.contains("show") && !document.querySelector(".x-win").classList.contains("show") && turn == 0) {
         document.getElementById("o-audio").play();
         board[0][1] = "O";
+        writingHistory("O", "TOP", "MIDDLE");
         turnCount += 1;
         inputInBoard(board[0][1], inputOTopMiddle, inputXTopMiddle);
     } else if(board[0][1] == "" && !document.querySelector(".o-win").classList.contains("show") && !document.querySelector(".x-win").classList.contains("show") && turn == 1){
         document.getElementById("x-audio").play();
         board[0][1] = "X";
+        writingHistory("X", "TOP", "MIDDLE");
         turnCount += 1;
         inputInBoard(board[0][1], inputOTopMiddle, inputXTopMiddle);
     }
-    checkDraw();
     checkOWin();
     checkXWin();
+    checkDraw();
 });
 
 gridTopRight.addEventListener("click", () =>{
+    removeHoverable();
     if (board[0][2] == "" && !document.querySelector(".o-win").classList.contains("show") && !document.querySelector(".x-win").classList.contains("show") && turn == 0) {
         document.getElementById("o-audio").play();
         board[0][2] = "O";
+        writingHistory("O", "TOP", "RIGHT");
         turnCount += 1;
         inputInBoard(board[0][2], inputOTopRight, inputXTopRight);
     } else if(board[0][2] == "" && !document.querySelector(".o-win").classList.contains("show") && !document.querySelector(".x-win").classList.contains("show") && turn == 1){
         document.getElementById("x-audio").play();
         board[0][2] = "X";
+        writingHistory("X", "TOP", "RIGHT");
         turnCount += 1;
         inputInBoard(board[0][2], inputOTopRight, inputXTopRight);
     }
-    checkDraw();
     checkOWin();
     checkXWin();
+    checkDraw();
 });
 
 gridMiddleLeft.addEventListener("click", () =>{
+    removeHoverable();
     if (board[1][0] == "" && !document.querySelector(".o-win").classList.contains("show") && !document.querySelector(".x-win").classList.contains("show") && turn == 0) {
         document.getElementById("o-audio").play();
         board[1][0] = "O";
+        writingHistory("O", "MIDDLE", "LEFT");
         turnCount += 1;
         inputInBoard(board[1][0], inputOMiddleLeft, inputXMiddleLeft);
     } else if(board[1][0] == "" && !document.querySelector(".o-win").classList.contains("show") && !document.querySelector(".x-win").classList.contains("show") && turn == 1){
         document.getElementById("x-audio").play();
         board[1][0] = "X";
+        writingHistory("X", "MIDDLE", "LEFT");
         turnCount += 1;
         inputInBoard(board[1][0], inputOMiddleLeft, inputXMiddleLeft);
     }
-    checkDraw();
     checkOWin();
     checkXWin();
+    checkDraw();
 });
 
 gridCenter.addEventListener("click", () =>{
+    removeHoverable();
     if (board[1][1] == "" && !document.querySelector(".o-win").classList.contains("show") && !document.querySelector(".x-win").classList.contains("show") && turn == 0) {
         document.getElementById("o-audio").play();
         board[1][1] = "O";
+        writingHistory("O", "CENTER");
         turnCount += 1;
         inputInBoard(board[1][1], inputOCenter, inputXCenter);
     } else if(board[1][1] == "" && !document.querySelector(".o-win").classList.contains("show") && !document.querySelector(".x-win").classList.contains("show") && turn == 1){
         document.getElementById("x-audio").play();
         board[1][1] = "X";
+        writingHistory("X", "CENTER");
         turnCount += 1;
         inputInBoard(board[1][1], inputOCenter, inputXCenter);
     }
-    checkDraw();
     checkOWin();
     checkXWin();
+    checkDraw();
 });
 
 gridMiddleRight.addEventListener("click", () =>{
+    removeHoverable();
     if (board[1][2] == "" && !document.querySelector(".o-win").classList.contains("show") && !document.querySelector(".x-win").classList.contains("show") && turn == 0) {
         document.getElementById("o-audio").play();
         board[1][2] = "O";
+        writingHistory("O", "MIDDLE", "RIGHT");
         turnCount += 1;
         inputInBoard(board[1][2], inputOMiddleRight, inputXMiddleRight);
     } else if(board[1][2] == "" && !document.querySelector(".o-win").classList.contains("show") && !document.querySelector(".x-win").classList.contains("show") && turn == 1){
         document.getElementById("x-audio").play();
         board[1][2] = "X";
+        writingHistory("X", "MIDDLE", "RIGHT");
         turnCount += 1;
         inputInBoard(board[1][2], inputOMiddleRight, inputXMiddleRight);
     }
-    checkDraw();
     checkOWin();
     checkXWin();
+    checkDraw();
 });
 
 gridBottomLeft.addEventListener("click", () =>{
+    removeHoverable();
     if (board[2][0] == "" && !document.querySelector(".o-win").classList.contains("show") && !document.querySelector(".x-win").classList.contains("show") && turn == 0) {
         document.getElementById("o-audio").play();
         board[2][0] = "O";
+        writingHistory("O", "BOTTOM", "LEFT");
         turnCount += 1;
         inputInBoard(board[2][0], inputOBottomLeft, inputXBottomLeft);
     } else if(board[2][0] == "" && !document.querySelector(".o-win").classList.contains("show") && !document.querySelector(".x-win").classList.contains("show") && turn == 1){
         document.getElementById("x-audio").play();
         board[2][0] = "X";
+        writingHistory("X", "BOTTOM", "LEFT");
         turnCount += 1;
         inputInBoard(board[2][0], inputOBottomLeft, inputXBottomLeft);
     }
-    checkDraw();
     checkOWin();
     checkXWin();
+    checkDraw();
 });
 
 gridBottomMiddle.addEventListener("click", () =>{
+    removeHoverable();
     if (board[2][1] == "" && !document.querySelector(".o-win").classList.contains("show") && !document.querySelector(".x-win").classList.contains("show") && turn == 0) {
         document.getElementById("o-audio").play();
         board[2][1] = "O";
+        writingHistory("O", "BOTTOM", "MIDDLE");
         turnCount += 1;
         inputInBoard(board[2][1], inputOBottomMiddle, inputXBottomMiddle);
     } else if(board[2][1] == "" && !document.querySelector(".o-win").classList.contains("show") && !document.querySelector(".x-win").classList.contains("show") && turn == 1){
         document.getElementById("x-audio").play();
         board[2][1] = "X";
+        writingHistory("X", "BOTTOM", "MIDDLE");
         turnCount += 1;
         inputInBoard(board[2][1], inputOBottomMiddle, inputXBottomMiddle);
     }
-    checkDraw();
     checkXWin();
     checkOWin();
+    checkDraw(); 
 });
 
 gridBottomRight.addEventListener("click", () =>{
+    removeHoverable();
     if (board[2][2] == "" && !document.querySelector(".o-win").classList.contains("show") && !document.querySelector(".x-win").classList.contains("show") && turn == 0) {
         document.getElementById("o-audio").play();
         board[2][2] = "O";
+        writingHistory("O", "BOTTOM", "RIGHT");
         turnCount += 1;
         inputInBoard(board[2][2], inputOBottomRight, inputXBottomRight);
     } else if(board[2][2] == "" && !document.querySelector(".o-win").classList.contains("show") && !document.querySelector(".x-win").classList.contains("show") && turn == 1){
         document.getElementById("x-audio").play();
         board[2][2] = "X";
+        writingHistory("X", "BOTTOM", "RIGHT");
         turnCount += 1;
         inputInBoard(board[2][2], inputOBottomRight, inputXBottomRight);
     }
-    checkDraw();
     checkOWin();
     checkXWin();
+    checkDraw();
 });
 
 function checkOWin(){
     if(board[0][0] == "O" && board[0][1] == "O" && board[0][2] == "O"){
         document.querySelector(".o-win").classList.add("show");
         document.getElementById("win-audio").play();
+        winCounterO += 1;
+        displayWinCounter();
     } else if(board[1][0] == "O" && board[1][1] == "O" && board[1][2] == "O"){
         document.querySelector(".o-win").classList.add("show");
         document.getElementById("win-audio").play();
+        winCounterO += 1;
+        displayWinCounter();
     } else if(board[2][0] == "O" && board[2][1] == "O" && board[2][2] == "O"){
         document.querySelector(".o-win").classList.add("show");
         document.getElementById("win-audio").play();
+        winCounterO += 1;
+        displayWinCounter();
     } else if(board[0][0] == "O" && board[1][0] == "O" && board [2][0] == "O"){
         document.querySelector(".o-win").classList.add("show");
         document.getElementById("win-audio").play();
+        winCounterO += 1;
+        displayWinCounter();
     } else if(board[0][1] == "O" && board[1][1] == "O" && board [2][1] == "O"){
         document.querySelector(".o-win").classList.add("show");
         document.getElementById("win-audio").play();
+        winCounterO += 1;
+        displayWinCounter();
     } else if(board[0][2] == "O" && board[1][2] == "O" && board [2][2] == "O"){
         document.querySelector(".o-win").classList.add("show");
         document.getElementById("win-audio").play();
+        winCounterO += 1;
+        displayWinCounter();
     } else if(board[0][0] == "O" && board[1][1] == "O" && board[2][2] == "O"){
         document.querySelector(".o-win").classList.add("show");
         document.getElementById("win-audio").play();
+        winCounterO += 1;
+        displayWinCounter();
     } else if(board[0][2] == "O" && board[1][1] == "O" && board[2][0] == "O"){
         document.querySelector(".o-win").classList.add("show");
         document.getElementById("win-audio").play();
+        winCounterO += 1;
+        displayWinCounter();
     }
 }
 
@@ -351,27 +463,43 @@ function checkXWin(){
     if(board[0][0] == "X" && board[0][1] == "X" && board[0][2] == "X"){
         document.querySelector(".x-win").classList.add("show");
         document.getElementById("win-audio").play();
+        winCounterX += 1;
+        displayWinCounter();
     } else if(board[1][0] == "X" && board[1][1] == "X" && board[1][2] == "X"){
         document.querySelector(".x-win").classList.add("show");
         document.getElementById("win-audio").play();
+        winCounterX += 1;
+        displayWinCounter();
     } else if(board[2][0] == "X" && board[2][1] == "X" && board[2][2] == "X"){
         document.querySelector(".x-win").classList.add("show");
         document.getElementById("win-audio").play();
+        winCounterX += 1;
+        displayWinCounter();
     } else if(board[0][0] == "X" && board[1][0] == "X" && board [2][0] == "X"){
         document.querySelector(".x-win").classList.add("show");
         document.getElementById("win-audio").play();
+        winCounterX += 1;
+        displayWinCounter();
     } else if(board[0][1] == "X" && board[1][1] == "X" && board [2][1] == "X"){
         document.querySelector(".x-win").classList.add("show");
         document.getElementById("win-audio").play();
+        winCounterX += 1;
+        displayWinCounter();
     } else if(board[0][2] == "X" && board[1][2] == "X" && board [2][2] == "X"){
         document.querySelector(".x-win").classList.add("show");
         document.getElementById("win-audio").play();
+        winCounterX += 1;
+        displayWinCounter();
     } else if(board[0][0] == "X" && board[1][1] == "X" && board[2][2] == "X"){
         document.querySelector(".x-win").classList.add("show");
         document.getElementById("win-audio").play();
+        winCounterX += 1;
+        displayWinCounter();
     } else if(board[0][2] == "X" && board[1][1] == "X" && board[2][0] == "X"){
         document.querySelector(".x-win").classList.add("show");
         document.getElementById("win-audio").play();
+        winCounterX += 1;
+        displayWinCounter();
     }
 }
 
@@ -379,5 +507,14 @@ function checkDraw(){
     if(turnCount == 9 && !document.querySelector(".o-win").classList.contains("show") && !document.querySelector(".x-win").classList.contains("show")){
         document.querySelector(".ox-draw").classList.add("show");
         document.getElementById("draw-audio").play();
+        drawCounter += 1;
+        displayWinCounter();
     }
 }
+
+const moveHistoryTrigger = document.querySelector(".history-display-hover");
+
+moveHistoryTrigger.addEventListener("click", ()=>{
+    moveHistoryTrigger.classList.toggle("elongate");
+    document.getElementById("history-display").classList.toggle("hidden");
+})
