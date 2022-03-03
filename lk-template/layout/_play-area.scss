@@ -101,7 +101,7 @@
         .x-player-info-image {
             position: absolute;
             top: 2px;
-            right: -33px;
+            right: -40px;
             height: 40px;
             width: 40px;
         }
@@ -109,7 +109,7 @@
         .o-player-info-image {
             position: absolute;
             top: -2px;
-            right: -40px;
+            right: -46px;
             height: 50px;
             width: 50px;
         }
@@ -117,18 +117,16 @@
 
     #grid-display {
         position: absolute;
-        margin-top: 20vh;
         left: 50%;
         transform: translateX(-50%);
-        width: auto;
+        width: 40vw;
+        margin-top: 20vh;
         display: flex;
-        align-items: center;
-        justify-content: center;
         flex-direction: column;
     
         .play-area {
             height: 60vh;
-            width: 40vw;
+            width: auto;
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             grid-template-rows: repeat(3, 1fr);
@@ -323,18 +321,52 @@
                 border-bottom: none;
             }
         }
+
+        .trigger-buttons {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: 1fr;
+            text-align: center;
+
+            .previous-move-trigger {
+                margin-top: 40px;
+                user-select: none;
+                font-size: 20px;
+                color: white;
+                visibility: hidden;
+                
+                &.show {
+                    cursor: pointer;
+                    visibility: visible;
+                }
+            }
     
-        #trigger {
-            margin-top: 40px;
-            cursor: pointer;
-            user-select: none;
-            color: white;
-            font-size: 20px;
-    
-            &:hover {
-                text-shadow: 0 0 10px hsl(0, 0%, 100%);
+            .next-move-trigger {
+                margin-top: 40px;
+                user-select: none;
+                font-size: 20px;
+                color: white;
+                visibility: hidden;
+                
+                &.show {
+                    cursor: pointer;
+                    visibility: visible;
+                }
+            }
+        
+            #trigger {
+                margin-top: 40px;
+                cursor: pointer;
+                user-select: none;
+                color: white;
+                font-size: 20px;
+        
+                &:hover {
+                    text-shadow: 0 0 10px hsl(0, 0%, 100%);
+                }
             }
         }
+
     }
 
     .history-display-wrapper {
@@ -373,6 +405,10 @@
             div {
                 margin-top: 10px;
                 font-size: 14px;
+
+                &.blur {
+                    color: hsl(0, 0%, 50%);
+                }
             }
 
             &.hidden {
