@@ -3,14 +3,17 @@ const board = [
     ["", "", ""],
     ["", "", ""]
 ];
+let historyBoard = [];
+let previousNextBoard = [];
+let previousNextBoardTemporary = [];
 
 let turn = 0;
 let turnCount = 0;
-let historyBoard = [];
 let winCounterX = 0;
 let winCounterO = 0;
 let drawCounter = 0;
 let endGame = false;
+let blurCounter = 1;
 
 const winCounterXDisplay = document.getElementById("win-counter-x");
 const winCounterODisplay = document.getElementById("win-counter-o");
@@ -153,15 +156,7 @@ const inputOBottomMiddle = document.querySelector(".o-image.bottom-middle");
 const inputXBottomRight = document.querySelector(".x-image.bottom-right");
 const inputOBottomRight = document.querySelector(".o-image.bottom-right");
 
-function reset(){
-    endGame = false;
-    document.querySelector(".history-display-hover").classList.remove("elongate");
-    document.getElementById("history-display").innerHTML = "";
-    document.getElementById("history-display").classList.add("hidden");
-    checkCurrentlyMovingPlayer();
-    turnCount = 0;
-    inGamePlayerX.classList.add("hoverable");
-    inGamePlayerO.classList.add("hoverable");
+function removeShow(){
     document.querySelector(".ox-draw").classList.remove("show");
     document.querySelector(".o-win").classList.remove("show");
     document.querySelector(".x-win").classList.remove("show");
@@ -185,6 +180,21 @@ function reset(){
     inputOBottomLeft.classList.remove("show");
     inputOBottomMiddle.classList.remove("show");
     inputOBottomRight.classList.remove("show");
+    document.getElementById("history-display").classList.add("hidden");
+    document.querySelector(".history-display-hover").classList.remove("elongate");
+    document.getElementById("history-display").innerHTML = "";
+
+    previousMoveTrigger.classList.remove("show");
+    nextMoveTrigger.classList.remove("show");
+}
+
+function reset(){
+    removeShow();
+    endGame = false;
+    checkCurrentlyMovingPlayer();
+    turnCount = 0;
+    inGamePlayerX.classList.add("hoverable");
+    inGamePlayerO.classList.add("hoverable");
 
     board[0][0] = "";
     board[0][1] = "";
@@ -197,6 +207,8 @@ function reset(){
     board[2][2] = "";
 
     historyBoard = [];
+    previousNextBoard = [];
+    blurCounter = 1;
 };
 
 document.getElementById("trigger").addEventListener("click", reset);
@@ -227,31 +239,39 @@ function removeHoverable() {
     }
 }
 
+function previousNextBoardRender(input){
+    if(endGame == false){
+        previousNextBoard.push(input);
+    }
+}
+
 function writingHistory(player, y, x = null){
     if(x){
-        historyBoard.unshift(`Turn ${turnCount} 🠮 Player ${player} marked the ${y} ${x}.`);
+        historyBoard.push(`Turn ${turnCount} 🠮 Player ${player} marked the ${y} ${x}.`);
     } else {
-        historyBoard.unshift(`Turn ${turnCount} 🠮 Player ${player} marked the ${y}.`);
+        historyBoard.push(`Turn ${turnCount} 🠮 Player ${player} marked the ${y}.`);
     }
     const divy = document.createElement("div");
-    divy.innerHTML = historyBoard[0];
+    divy.innerHTML = historyBoard[historyBoard.length - 1];
     document.getElementById("history-display").append(divy);
 }
 
 gridTopLeft.addEventListener("click", () => {
     removeHoverable();
-    if (board[0][0] == "" && !document.querySelector(".o-win").classList.contains("show") && !document.querySelector(".x-win").classList.contains("show") && turn == 0) {
+    if (board[0][0] == "" && !document.querySelector(".o-win").classList.contains("show") && !document.querySelector(".x-win").classList.contains("show") && turn == 0 && endGame == false) {
         document.getElementById("o-audio").play();
         board[0][0] = "O";
         turnCount += 1;
-        writingHistory("O", "TOP", "LEFT");
         inputInBoard(board[0][0], inputOTopLeft, inputXTopLeft);
-    } else if(board[0][0] == "" && !document.querySelector(".o-win").classList.contains("show") && !document.querySelector(".x-win").classList.contains("show") && turn == 1){
+        writingHistory("O", "TOP", "LEFT");
+        previousNextBoardRender(inputOTopLeft);
+    } else if(board[0][0] == "" && !document.querySelector(".o-win").classList.contains("show") && !document.querySelector(".x-win").classList.contains("show") && turn == 1 && endGame == false){
         document.getElementById("x-audio").play();
         board[0][0] = "X";
         turnCount += 1;
-        writingHistory("X", "TOP", "LEFT");
         inputInBoard(board[0][0], inputOTopLeft, inputXTopLeft);
+        writingHistory("X", "TOP", "LEFT");
+        previousNextBoardRender(inputXTopLeft);
     }
     checkOWin();
     checkXWin();
@@ -260,18 +280,20 @@ gridTopLeft.addEventListener("click", () => {
 
 gridTopMiddle.addEventListener("click", () =>{
     removeHoverable();
-    if (board[0][1] == "" && !document.querySelector(".o-win").classList.contains("show") && !document.querySelector(".x-win").classList.contains("show") && turn == 0) {
+    if (board[0][1] == "" && !document.querySelector(".o-win").classList.contains("show") && !document.querySelector(".x-win").classList.contains("show") && turn == 0 && endGame == false) {
         document.getElementById("o-audio").play();
         board[0][1] = "O";
         turnCount += 1;
-        writingHistory("O", "TOP", "MIDDLE");
         inputInBoard(board[0][1], inputOTopMiddle, inputXTopMiddle);
-    } else if(board[0][1] == "" && !document.querySelector(".o-win").classList.contains("show") && !document.querySelector(".x-win").classList.contains("show") && turn == 1){
+        writingHistory("O", "TOP", "MIDDLE");
+        previousNextBoardRender(inputOTopMiddle);
+    } else if(board[0][1] == "" && !document.querySelector(".o-win").classList.contains("show") && !document.querySelector(".x-win").classList.contains("show") && turn == 1 && endGame == false){
         document.getElementById("x-audio").play();
         board[0][1] = "X";
         turnCount += 1;
-        writingHistory("X", "TOP", "MIDDLE");
         inputInBoard(board[0][1], inputOTopMiddle, inputXTopMiddle);
+        writingHistory("X", "TOP", "MIDDLE");
+        previousNextBoardRender(inputXTopMiddle);
     }
     checkOWin();
     checkXWin();
@@ -280,18 +302,20 @@ gridTopMiddle.addEventListener("click", () =>{
 
 gridTopRight.addEventListener("click", () =>{
     removeHoverable();
-    if (board[0][2] == "" && !document.querySelector(".o-win").classList.contains("show") && !document.querySelector(".x-win").classList.contains("show") && turn == 0) {
+    if (board[0][2] == "" && !document.querySelector(".o-win").classList.contains("show") && !document.querySelector(".x-win").classList.contains("show") && turn == 0 && endGame == false) {
         document.getElementById("o-audio").play();
         board[0][2] = "O";
         turnCount += 1;
-        writingHistory("O", "TOP", "RIGHT");
         inputInBoard(board[0][2], inputOTopRight, inputXTopRight);
-    } else if(board[0][2] == "" && !document.querySelector(".o-win").classList.contains("show") && !document.querySelector(".x-win").classList.contains("show") && turn == 1){
+        writingHistory("O", "TOP", "RIGHT");
+        previousNextBoardRender(inputOTopRight);
+    } else if(board[0][2] == "" && !document.querySelector(".o-win").classList.contains("show") && !document.querySelector(".x-win").classList.contains("show") && turn == 1 && endGame == false){
         document.getElementById("x-audio").play();
         board[0][2] = "X";
         turnCount += 1;
-        writingHistory("X", "TOP", "RIGHT");
         inputInBoard(board[0][2], inputOTopRight, inputXTopRight);
+        writingHistory("X", "TOP", "RIGHT");
+        previousNextBoardRender(inputXTopRight);
     }
     checkOWin();
     checkXWin();
@@ -300,18 +324,20 @@ gridTopRight.addEventListener("click", () =>{
 
 gridMiddleLeft.addEventListener("click", () =>{
     removeHoverable();
-    if (board[1][0] == "" && !document.querySelector(".o-win").classList.contains("show") && !document.querySelector(".x-win").classList.contains("show") && turn == 0) {
+    if (board[1][0] == "" && !document.querySelector(".o-win").classList.contains("show") && !document.querySelector(".x-win").classList.contains("show") && turn == 0 && endGame == false) {
         document.getElementById("o-audio").play();
         board[1][0] = "O";
         turnCount += 1;
-        writingHistory("O", "MIDDLE", "LEFT");
         inputInBoard(board[1][0], inputOMiddleLeft, inputXMiddleLeft);
-    } else if(board[1][0] == "" && !document.querySelector(".o-win").classList.contains("show") && !document.querySelector(".x-win").classList.contains("show") && turn == 1){
+        writingHistory("O", "MIDDLE", "LEFT");
+        previousNextBoardRender(inputOMiddleLeft);
+    } else if(board[1][0] == "" && !document.querySelector(".o-win").classList.contains("show") && !document.querySelector(".x-win").classList.contains("show") && turn == 1 && endGame == false){
         document.getElementById("x-audio").play();
         board[1][0] = "X";
         turnCount += 1;
-        writingHistory("X", "MIDDLE", "LEFT");
         inputInBoard(board[1][0], inputOMiddleLeft, inputXMiddleLeft);
+        writingHistory("X", "MIDDLE", "LEFT");
+        previousNextBoardRender(inputXMiddleLeft);
     }
     checkOWin();
     checkXWin();
@@ -320,18 +346,20 @@ gridMiddleLeft.addEventListener("click", () =>{
 
 gridCenter.addEventListener("click", () =>{
     removeHoverable();
-    if (board[1][1] == "" && !document.querySelector(".o-win").classList.contains("show") && !document.querySelector(".x-win").classList.contains("show") && turn == 0) {
+    if (board[1][1] == "" && !document.querySelector(".o-win").classList.contains("show") && !document.querySelector(".x-win").classList.contains("show") && turn == 0 && endGame == false) {
         document.getElementById("o-audio").play();
         board[1][1] = "O";
         turnCount += 1;
-        writingHistory("O", "CENTER");
         inputInBoard(board[1][1], inputOCenter, inputXCenter);
-    } else if(board[1][1] == "" && !document.querySelector(".o-win").classList.contains("show") && !document.querySelector(".x-win").classList.contains("show") && turn == 1){
+        writingHistory("O", "CENTER");
+        previousNextBoardRender(inputOCenter);
+    } else if(board[1][1] == "" && !document.querySelector(".o-win").classList.contains("show") && !document.querySelector(".x-win").classList.contains("show") && turn == 1 && endGame == false){
         document.getElementById("x-audio").play();
         board[1][1] = "X";
         turnCount += 1;
-        writingHistory("X", "CENTER");
         inputInBoard(board[1][1], inputOCenter, inputXCenter);
+        writingHistory("X", "CENTER");
+        previousNextBoardRender(inputXCenter);
     }
     checkOWin();
     checkXWin();
@@ -340,18 +368,20 @@ gridCenter.addEventListener("click", () =>{
 
 gridMiddleRight.addEventListener("click", () =>{
     removeHoverable();
-    if (board[1][2] == "" && !document.querySelector(".o-win").classList.contains("show") && !document.querySelector(".x-win").classList.contains("show") && turn == 0) {
+    if (board[1][2] == "" && !document.querySelector(".o-win").classList.contains("show") && !document.querySelector(".x-win").classList.contains("show") && turn == 0 && endGame == false) {
         document.getElementById("o-audio").play();
         board[1][2] = "O";
         turnCount += 1;
-        writingHistory("O", "MIDDLE", "RIGHT");
         inputInBoard(board[1][2], inputOMiddleRight, inputXMiddleRight);
-    } else if(board[1][2] == "" && !document.querySelector(".o-win").classList.contains("show") && !document.querySelector(".x-win").classList.contains("show") && turn == 1){
+        writingHistory("O", "MIDDLE", "RIGHT");
+        previousNextBoardRender(inputOMiddleRight);
+    } else if(board[1][2] == "" && !document.querySelector(".o-win").classList.contains("show") && !document.querySelector(".x-win").classList.contains("show") && turn == 1 && endGame == false){
         document.getElementById("x-audio").play();
         board[1][2] = "X";
         turnCount += 1;
-        writingHistory("X", "MIDDLE", "RIGHT");
         inputInBoard(board[1][2], inputOMiddleRight, inputXMiddleRight);
+        writingHistory("X", "MIDDLE", "RIGHT");
+        previousNextBoardRender(inputXMiddleRight);
     }
     checkOWin();
     checkXWin();
@@ -360,18 +390,20 @@ gridMiddleRight.addEventListener("click", () =>{
 
 gridBottomLeft.addEventListener("click", () =>{
     removeHoverable();
-    if (board[2][0] == "" && !document.querySelector(".o-win").classList.contains("show") && !document.querySelector(".x-win").classList.contains("show") && turn == 0) {
+    if (board[2][0] == "" && !document.querySelector(".o-win").classList.contains("show") && !document.querySelector(".x-win").classList.contains("show") && turn == 0 && endGame == false) {
         document.getElementById("o-audio").play();
         board[2][0] = "O";
         turnCount += 1;
-        writingHistory("O", "BOTTOM", "LEFT");
         inputInBoard(board[2][0], inputOBottomLeft, inputXBottomLeft);
-    } else if(board[2][0] == "" && !document.querySelector(".o-win").classList.contains("show") && !document.querySelector(".x-win").classList.contains("show") && turn == 1){
+        writingHistory("O", "BOTTOM", "LEFT");
+        previousNextBoardRender(inputOBottomLeft);
+    } else if(board[2][0] == "" && !document.querySelector(".o-win").classList.contains("show") && !document.querySelector(".x-win").classList.contains("show") && turn == 1 && endGame == false){
         document.getElementById("x-audio").play();
         board[2][0] = "X";
         turnCount += 1;
-        writingHistory("X", "BOTTOM", "LEFT");
         inputInBoard(board[2][0], inputOBottomLeft, inputXBottomLeft);
+        writingHistory("X", "BOTTOM", "LEFT");
+        previousNextBoardRender(inputXBottomLeft);
     }
     checkOWin();
     checkXWin();
@@ -380,18 +412,20 @@ gridBottomLeft.addEventListener("click", () =>{
 
 gridBottomMiddle.addEventListener("click", () =>{
     removeHoverable();
-    if (board[2][1] == "" && !document.querySelector(".o-win").classList.contains("show") && !document.querySelector(".x-win").classList.contains("show") && turn == 0) {
+    if (board[2][1] == "" && !document.querySelector(".o-win").classList.contains("show") && !document.querySelector(".x-win").classList.contains("show") && turn == 0 && endGame == false) {
         document.getElementById("o-audio").play();
         board[2][1] = "O";
         turnCount += 1;
-        writingHistory("O", "BOTTOM", "MIDDLE");
         inputInBoard(board[2][1], inputOBottomMiddle, inputXBottomMiddle);
-    } else if(board[2][1] == "" && !document.querySelector(".o-win").classList.contains("show") && !document.querySelector(".x-win").classList.contains("show") && turn == 1){
+        writingHistory("O", "BOTTOM", "MIDDLE");
+        previousNextBoardRender(inputOBottomMiddle);
+    } else if(board[2][1] == "" && !document.querySelector(".o-win").classList.contains("show") && !document.querySelector(".x-win").classList.contains("show") && turn == 1 && endGame == false){
         document.getElementById("x-audio").play();
         board[2][1] = "X";
         turnCount += 1;
-        writingHistory("X", "BOTTOM", "MIDDLE");
         inputInBoard(board[2][1], inputOBottomMiddle, inputXBottomMiddle);
+        writingHistory("X", "BOTTOM", "MIDDLE");
+        previousNextBoardRender(inputXBottomMiddle);
     }
     checkXWin();
     checkOWin();
@@ -400,23 +434,34 @@ gridBottomMiddle.addEventListener("click", () =>{
 
 gridBottomRight.addEventListener("click", () =>{
     removeHoverable();
-    if (board[2][2] == "" && !document.querySelector(".o-win").classList.contains("show") && !document.querySelector(".x-win").classList.contains("show") && turn == 0) {
+    if (board[2][2] == "" && !document.querySelector(".o-win").classList.contains("show") && !document.querySelector(".x-win").classList.contains("show") && turn == 0 && endGame == false) {
         document.getElementById("o-audio").play();
         board[2][2] = "O";
         turnCount += 1;
-        writingHistory("O", "BOTTOM", "RIGHT");
         inputInBoard(board[2][2], inputOBottomRight, inputXBottomRight);
-    } else if(board[2][2] == "" && !document.querySelector(".o-win").classList.contains("show") && !document.querySelector(".x-win").classList.contains("show") && turn == 1){
+        writingHistory("O", "BOTTOM", "RIGHT");
+        previousNextBoardRender(inputOBottomRight);
+    } else if(board[2][2] == "" && !document.querySelector(".o-win").classList.contains("show") && !document.querySelector(".x-win").classList.contains("show") && turn == 1 && endGame == false){
         document.getElementById("x-audio").play();
         board[2][2] = "X";
         turnCount += 1;
-        writingHistory("X", "BOTTOM", "RIGHT");
         inputInBoard(board[2][2], inputOBottomRight, inputXBottomRight);
+        writingHistory("X", "BOTTOM", "RIGHT");
+        previousNextBoardRender(inputXBottomRight);
     }
     checkOWin();
     checkXWin();
     checkDraw();
 });
+
+const previousMoveTrigger = document.querySelector(".previous-move-trigger");
+const nextMoveTrigger = document.querySelector(".next-move-trigger");
+
+function showPreviousNextTriggers(){
+    if(endGame == true){
+        previousMoveTrigger.classList.add("show");
+    }
+}
 
 function checkOWin(){
     if(board[0][0] == "O" && board[0][1] == "O" && board[0][2] == "O" && !endGame){
@@ -425,49 +470,58 @@ function checkOWin(){
         document.getElementById("win-audio").play();
         winCounterO += 1;
         displayWinCounter();
+        showPreviousNextTriggers();
     } else if(board[1][0] == "O" && board[1][1] == "O" && board[1][2] == "O" && !endGame){
         document.querySelector(".o-win").classList.add("show");
         endGame = true;
         document.getElementById("win-audio").play();
         winCounterO += 1;
         displayWinCounter();
+        showPreviousNextTriggers();
     } else if(board[2][0] == "O" && board[2][1] == "O" && board[2][2] == "O" && !endGame){
         document.querySelector(".o-win").classList.add("show");
         endGame = true;
         document.getElementById("win-audio").play();
         winCounterO += 1;
         displayWinCounter();
+        showPreviousNextTriggers();
     } else if(board[0][0] == "O" && board[1][0] == "O" && board [2][0] == "O" && !endGame){
         document.querySelector(".o-win").classList.add("show");
         endGame = true;
         document.getElementById("win-audio").play();
         winCounterO += 1;
         displayWinCounter();
+        showPreviousNextTriggers();
     } else if(board[0][1] == "O" && board[1][1] == "O" && board [2][1] == "O" && !endGame){
         document.querySelector(".o-win").classList.add("show");
         endGame = true;
         document.getElementById("win-audio").play();
         winCounterO += 1;
         displayWinCounter();
+        showPreviousNextTriggers();
     } else if(board[0][2] == "O" && board[1][2] == "O" && board [2][2] == "O" && !endGame){
         document.querySelector(".o-win").classList.add("show");
         endGame = true;
         document.getElementById("win-audio").play();
         winCounterO += 1;
         displayWinCounter();
+        showPreviousNextTriggers();
     } else if(board[0][0] == "O" && board[1][1] == "O" && board[2][2] == "O" && !endGame){
         document.querySelector(".o-win").classList.add("show");
         endGame = true;
         document.getElementById("win-audio").play();
         winCounterO += 1;
         displayWinCounter();
+        showPreviousNextTriggers();
     } else if(board[0][2] == "O" && board[1][1] == "O" && board[2][0] == "O" && !endGame){
         document.querySelector(".o-win").classList.add("show");
         endGame = true;
         document.getElementById("win-audio").play();
         winCounterO += 1;
         displayWinCounter();
+        showPreviousNextTriggers();
     }
+
 }
 
 function checkXWin(){
@@ -477,48 +531,56 @@ function checkXWin(){
         document.getElementById("win-audio").play();
         winCounterX += 1;
         displayWinCounter();
+        showPreviousNextTriggers();
     } else if(board[1][0] == "X" && board[1][1] == "X" && board[1][2] == "X" && !endGame){
         document.querySelector(".x-win").classList.add("show");
         endGame = true;
         document.getElementById("win-audio").play();
         winCounterX += 1;
         displayWinCounter();
+        showPreviousNextTriggers();
     } else if(board[2][0] == "X" && board[2][1] == "X" && board[2][2] == "X" && !endGame){
         document.querySelector(".x-win").classList.add("show");
         endGame = true;
         document.getElementById("win-audio").play();
         winCounterX += 1;
         displayWinCounter();
+        showPreviousNextTriggers();
     } else if(board[0][0] == "X" && board[1][0] == "X" && board [2][0] == "X" && !endGame){
         document.querySelector(".x-win").classList.add("show");
         endGame = true;
         document.getElementById("win-audio").play();
         winCounterX += 1;
         displayWinCounter();
+        showPreviousNextTriggers();
     } else if(board[0][1] == "X" && board[1][1] == "X" && board [2][1] == "X" && !endGame){
         document.querySelector(".x-win").classList.add("show");
         endGame = true;
         document.getElementById("win-audio").play();
         winCounterX += 1;
         displayWinCounter();
+        showPreviousNextTriggers();
     } else if(board[0][2] == "X" && board[1][2] == "X" && board [2][2] == "X" && !endGame){
         document.querySelector(".x-win").classList.add("show");
         endGame = true;
         document.getElementById("win-audio").play();
         winCounterX += 1;
         displayWinCounter();
+        showPreviousNextTriggers();
     } else if(board[0][0] == "X" && board[1][1] == "X" && board[2][2] == "X" && !endGame){
         document.querySelector(".x-win").classList.add("show");
         endGame = true;
         document.getElementById("win-audio").play();
         winCounterX += 1;
         displayWinCounter();
+        showPreviousNextTriggers();
     } else if(board[0][2] == "X" && board[1][1] == "X" && board[2][0] == "X" && !endGame){
         document.querySelector(".x-win").classList.add("show");
         endGame = true;
         document.getElementById("win-audio").play();
         winCounterX += 1;
         displayWinCounter();
+        showPreviousNextTriggers();
     }
 }
 
@@ -529,7 +591,9 @@ function checkDraw(){
         document.getElementById("draw-audio").play();
         drawCounter += 1;
         displayWinCounter();
+        showPreviousNextTriggers();
     }
+
 }
 
 const moveHistoryTrigger = document.querySelector(".history-display-hover");
@@ -537,4 +601,36 @@ const moveHistoryTrigger = document.querySelector(".history-display-hover");
 moveHistoryTrigger.addEventListener("click", ()=>{
     moveHistoryTrigger.classList.toggle("elongate");
     document.getElementById("history-display").classList.toggle("hidden");
-})
+});
+
+const collection = document.getElementById("history-display").children;
+
+function blurMove(num, color){
+    collection[collection.length - num].style.color = color;
+}
+
+previousMoveTrigger.addEventListener("click", ()=>{
+    previousNextBoard[previousNextBoard.length - 1].classList.remove("show");
+    previousNextBoardTemporary.push(previousNextBoard.pop());
+    if(previousNextBoard.length == 1){
+        previousMoveTrigger.classList.remove("show");
+    }
+    if(previousNextBoardTemporary.length !== 0){
+        nextMoveTrigger.classList.add("show");
+    }
+    blurMove(blurCounter, "gray");
+    blurCounter += 1;
+});
+
+nextMoveTrigger.addEventListener("click", ()=>{
+    previousNextBoardTemporary[previousNextBoardTemporary.length - 1].classList.add("show");
+    previousNextBoard.push(previousNextBoardTemporary.pop());
+    if(previousNextBoardTemporary.length == 0){
+        nextMoveTrigger.classList.remove("show");
+    }
+    if(previousNextBoard.length !== 1){
+        previousMoveTrigger.classList.add("show");
+    }
+    blurCounter -= 1;
+    blurMove(blurCounter, "white");
+});
