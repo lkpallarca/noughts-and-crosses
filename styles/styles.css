@@ -175,7 +175,7 @@ table {
 #in-game-screen .in-game-info .x-player-info-image {
   position: absolute;
   top: 2px;
-  right: -33px;
+  right: -40px;
   height: 40px;
   width: 40px;
 }
@@ -183,27 +183,21 @@ table {
 #in-game-screen .in-game-info .o-player-info-image {
   position: absolute;
   top: -2px;
-  right: -40px;
+  right: -46px;
   height: 50px;
   width: 50px;
 }
 
 #in-game-screen #grid-display {
   position: absolute;
-  margin-top: 20vh;
   left: 50%;
   -webkit-transform: translateX(-50%);
           transform: translateX(-50%);
-  width: auto;
+  width: 40vw;
+  margin-top: 20vh;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
@@ -212,7 +206,7 @@ table {
 
 #in-game-screen #grid-display .play-area {
   height: 60vh;
-  width: 40vw;
+  width: auto;
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: (1fr)[3];
@@ -413,7 +407,49 @@ table {
   border-bottom: none;
 }
 
-#in-game-screen #grid-display #trigger {
+#in-game-screen #grid-display .trigger-buttons {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[3];
+      grid-template-columns: repeat(3, 1fr);
+  -ms-grid-rows: 1fr;
+      grid-template-rows: 1fr;
+  text-align: center;
+}
+
+#in-game-screen #grid-display .trigger-buttons .previous-move-trigger {
+  margin-top: 40px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  font-size: 20px;
+  color: white;
+  visibility: hidden;
+}
+
+#in-game-screen #grid-display .trigger-buttons .previous-move-trigger.show {
+  cursor: pointer;
+  visibility: visible;
+}
+
+#in-game-screen #grid-display .trigger-buttons .next-move-trigger {
+  margin-top: 40px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  font-size: 20px;
+  color: white;
+  visibility: hidden;
+}
+
+#in-game-screen #grid-display .trigger-buttons .next-move-trigger.show {
+  cursor: pointer;
+  visibility: visible;
+}
+
+#in-game-screen #grid-display .trigger-buttons #trigger {
   margin-top: 40px;
   cursor: pointer;
   -webkit-user-select: none;
@@ -424,7 +460,7 @@ table {
   font-size: 20px;
 }
 
-#in-game-screen #grid-display #trigger:hover {
+#in-game-screen #grid-display .trigger-buttons #trigger:hover {
   text-shadow: 0 0 10px white;
 }
 
@@ -471,6 +507,10 @@ table {
 #in-game-screen .history-display-wrapper #history-display div {
   margin-top: 10px;
   font-size: 14px;
+}
+
+#in-game-screen .history-display-wrapper #history-display div.blur {
+  color: gray;
 }
 
 #in-game-screen .history-display-wrapper #history-display.hidden {
