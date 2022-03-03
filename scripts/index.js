@@ -20,9 +20,21 @@ const winCounterODisplay = document.getElementById("win-counter-o");
 const drawCounterDisplay = document.querySelector(".in-game-player-draw");
 
 function displayWinCounter(){
-    winCounterXDisplay.innerHTML = `Wins: ${winCounterX}`;
-    winCounterODisplay.innerHTML = `Wins: ${winCounterO}`;
-    drawCounterDisplay.innerHTML = `Draws: ${drawCounter}`;
+    if(winCounterX <= 1){
+        winCounterXDisplay.innerHTML = `Win: ${winCounterX}`;
+    } else {
+        winCounterXDisplay.innerHTML = `Wins: ${winCounterX}`;
+    }
+    if(winCounterO <= 1){
+        winCounterODisplay.innerHTML = `Win: ${winCounterO}`;
+    } else {
+        winCounterODisplay.innerHTML = `Wins: ${winCounterO}`;
+    }
+    if(drawCounter <= 1){
+        drawCounterDisplay.innerHTML = `Draw: ${drawCounter}`;
+    } else {
+        drawCounterDisplay.innerHTML = `Draws: ${drawCounter}`;
+    }
 }
 
 

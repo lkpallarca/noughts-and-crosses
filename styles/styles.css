@@ -92,7 +92,7 @@ table {
   border-bottom-right-radius: 40px;
   position: relative;
   height: 33px;
-  width: 75px;
+  width: 80px;
   background-color: blue;
   color: white;
   -webkit-transition: 0.4s all ease-in-out;
@@ -129,7 +129,7 @@ table {
   border-bottom-right-radius: 40px;
   position: relative;
   height: 33px;
-  width: 75px;
+  width: 80px;
   background-color: red;
   color: white;
   -webkit-transition: 0.4s all ease-in-out;
@@ -165,7 +165,7 @@ table {
   border-bottom-right-radius: 40px;
   position: relative;
   height: 33px;
-  width: 77px;
+  width: 80px;
   background-color: #4d4d4d;
   color: white;
   font-size: 18px;
