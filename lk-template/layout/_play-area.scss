@@ -12,6 +12,12 @@
             display: none;
         }
 
+        .current-game-mode {
+            font-size: 30px;
+            color: white;
+            margin-bottom: 15px;
+        }
+
         .current-player-moving {
             font-size: 20px;
             color: white;
@@ -25,7 +31,7 @@
             border-bottom-right-radius: 40px;
             position: relative;
             height: 33px;
-            width: 80px;
+            width: 100px;
             background-color: blue;
             color: white;
             transition: 0.4s all ease-in-out;
@@ -59,7 +65,7 @@
             border-bottom-right-radius: 40px;
             position: relative;
             height: 33px;
-            width: 80px;
+            width: 100px;
             background-color: red;
             color: white;
             transition: 0.4s all ease-in-out;
@@ -91,11 +97,31 @@
             border-bottom-right-radius: 40px;
             position: relative;
             height: 33px;
-            width: 80px;
+            width: 100px;
             background-color: hsl(0, 0%, 30%);
             color: white;
             font-size: 18px;
             padding: 12px 0 0 5px;
+        }
+
+        .in-game-change-mode {
+            user-select: none;
+            margin-top: 20px;
+            cursor: pointer;
+            border-top-right-radius: 40px;
+            border-bottom-right-radius: 40px;
+            position: relative;
+            height: 33px;
+            width: 190px;
+            background-color: white;
+            color: black;
+            transition: 0.4s all ease-in-out;
+            font-size: 0px;
+            padding: 12px 0 0 5px;
+
+            #game-mode {
+                font-size: 20px;
+            }
         }
 
         .x-player-info-image {

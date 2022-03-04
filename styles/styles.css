@@ -76,6 +76,12 @@ table {
   display: none;
 }
 
+#in-game-screen .in-game-info .current-game-mode {
+  font-size: 30px;
+  color: white;
+  margin-bottom: 15px;
+}
+
 #in-game-screen .in-game-info .current-player-moving {
   font-size: 20px;
   color: white;
@@ -92,7 +98,7 @@ table {
   border-bottom-right-radius: 40px;
   position: relative;
   height: 33px;
-  width: 80px;
+  width: 100px;
   background-color: blue;
   color: white;
   -webkit-transition: 0.4s all ease-in-out;
@@ -129,7 +135,7 @@ table {
   border-bottom-right-radius: 40px;
   position: relative;
   height: 33px;
-  width: 80px;
+  width: 100px;
   background-color: red;
   color: white;
   -webkit-transition: 0.4s all ease-in-out;
@@ -165,11 +171,35 @@ table {
   border-bottom-right-radius: 40px;
   position: relative;
   height: 33px;
-  width: 80px;
+  width: 100px;
   background-color: #4d4d4d;
   color: white;
   font-size: 18px;
   padding: 12px 0 0 5px;
+}
+
+#in-game-screen .in-game-info .in-game-change-mode {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  margin-top: 20px;
+  cursor: pointer;
+  border-top-right-radius: 40px;
+  border-bottom-right-radius: 40px;
+  position: relative;
+  height: 33px;
+  width: 190px;
+  background-color: white;
+  color: black;
+  -webkit-transition: 0.4s all ease-in-out;
+  transition: 0.4s all ease-in-out;
+  font-size: 0px;
+  padding: 12px 0 0 5px;
+}
+
+#in-game-screen .in-game-info .in-game-change-mode #game-mode {
+  font-size: 20px;
 }
 
 #in-game-screen .in-game-info .x-player-info-image {
@@ -667,13 +697,20 @@ table {
   margin-right: 20px;
 }
 
+#startup-modal .game-title .mode-select .two-player.selected {
+  color: blue;
+}
+
 #startup-modal .game-title .mode-select .two-player:hover {
   color: blue;
 }
 
 #startup-modal .game-title .mode-select .vs-ai {
   margin-right: 20px;
-  display: none;
+}
+
+#startup-modal .game-title .mode-select .vs-ai.selected {
+  color: red;
 }
 
 #startup-modal .game-title .mode-select .vs-ai:hover {

@@ -14,7 +14,7 @@
         <div class="game-title">
             <div class="game-title-text">Noughts & Crosses</div>
             <div class="mode-select">
-                <span class="two-player">2 Player Mode</span>
+                <span class="two-player selected">2 Player Mode</span>
                 <span class="vs-ai">VS AI Mode</span>
             </div>
         </div>
@@ -35,10 +35,12 @@
     </header>
     <section id="in-game-screen">
         <section class="in-game-info">
+            <div class="current-game-mode"></div>
             <div class="current-player-moving"></div>
             <div class="in-game-player-x hoverable">Make Player X go first <span id="win-counter-x"></span><img class="x-player-info-image" src="assets/blue-x.png" alt="blue letter x"></div>
             <div class="in-game-player-o hoverable">Make Player O go first <span id="win-counter-o"></span><img class="o-player-info-image" src="assets/red-o.png" alt="red letter o"></div>
             <div class="in-game-player-draw"></div>
+            <div class="in-game-change-mode hoverable"><span id="game-mode">Change game mode</span></div>
         </section>
         <section id="grid-display">
             <div class="play-area">
