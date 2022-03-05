@@ -142,7 +142,11 @@ inGamePlayerX.addEventListener("click", () =>{
 });
 
 inGamePlayerO.addEventListener("click", () =>{
-    if(turn == 1 && turnCount === 0){
+    if(turn == 1 && turnCount === 0 && mode == 0){
+        turn = 0;
+        checkCurrentlyMovingPlayer();
+        aiWinLogic();
+    } else if(turn == 1 && turnCount == 0){
         turn = 0;
         checkCurrentlyMovingPlayer();
     }
