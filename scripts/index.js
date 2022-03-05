@@ -43,15 +43,17 @@ function displayWinCounter(){
 }
 
 changeGameModeTrigger.addEventListener("click", ()=>{
-    if(mode == 0){
+    if(mode == 1 && turnCount == 0){
         gameModeDisplay.innerHTML = `vs AI mode`;
         gameModeDisplay.style.color = "red";
-        mode = 1;
-    } else if(mode == 1){
+        mode = 0;
+    } else if(mode == 0 && turnCount == 0){
         gameModeDisplay.innerHTML = `2 player mode`;
         gameModeDisplay.style.color = "blue";
-        mode = 0;
+        mode = 1;
     }
+    aiWinLogic();
+    console.log(mode);
 })
 
 function checkCurrentGameMode(){
@@ -188,6 +190,7 @@ startGameTrigger.addEventListener("click", () =>{
         removePageModal();
         checkCurrentlyMovingPlayer();
         checkCurrentGameMode();
+        aiInitiative();
     }
 });
 
@@ -277,6 +280,10 @@ function reset(){
     historyBoard = [];
     previousNextBoard = [];
     blurCounter = 1;
+
+    if(mode == 0 && turn == 0){
+        aiInitiative();
+    }
 };
 
 document.getElementById("trigger").addEventListener("click", reset);
@@ -628,7 +635,7 @@ function checkWinBeforeAI(){
     checkOWin();
     checkXWin();
     checkDraw();
-    if(!document.querySelector(".o-win").classList.contains("show") && !document.querySelector(".x-win").classList.contains("show")){
+    if(mode == 0 && !document.querySelector(".o-win").classList.contains("show") && !document.querySelector(".x-win").classList.contains("show")){
         aiWinLogic();
     }
     checkOWin();
@@ -718,7 +725,7 @@ function aiWinLogic(){
         aiWinLogicWork(board[2][1], inputOBottomMiddle);
         writingHistory("O", "BOTTOM", "MIDDLE");
         aiShowWin();
-    } else if(mode == 0 && turn == 0 && board[0][1] == "O" && board[2][0] == "O" && board[1][0] == "" && !endGame){
+    } else if(mode == 0 && turn == 0 && board[0][0] == "O" && board[2][0] == "O" && board[1][0] == "" && !endGame){
         board[1][0] = "O";
         aiWinLogicWork(board[1][0], inputOMiddleLeft);
         writingHistory("O", "MIDDLE", "LEFT");
@@ -894,10 +901,10 @@ function aiInitiative(){
         board[2][2] = "O";
         aiWinLogicWork(board[2][2], inputOBottomRight);
         writingHistory("O", "BOTTOM", "RIGHT");
-    } else if(mode == 0 && board[1][2] == "" && turn == 0){
-        board[1][2] = "O";
-        aiWinLogicWork(board[1][2], inputOMiddleRight);
-        writingHistory("O", "MIDDLE", "RIGHT");
+    } else if(mode == 0 && board[0][2] == "" && turn == 0){
+        board[0][2] = "O";
+        aiWinLogicWork(board[0][2], inputOTopRight);
+        writingHistory("O", "TOP", "RIGHT");
     } else if(mode == 0 && board[0][1] == "" && turn == 0){
         board[0][1] = "O";
         aiWinLogicWork(board[0][1], inputOTopMiddle);
@@ -906,10 +913,10 @@ function aiInitiative(){
         board[2][1] = "O";
         aiWinLogicWork(board[2][1], inputOBottomMiddle);
         writingHistory("O", "BOTTOM", "MIDDLE");
-    } else if(mode == 0 && board[0][2] == "" && turn == 0){
-        board[0][2] = "O";
-        aiWinLogicWork(board[0][2], inputOTopRight);
-        writingHistory("O", "TOP", "RIGHT");
+    } else if(mode == 0 && board[1][2] == "" && turn == 0){
+        board[1][2] = "O";
+        aiWinLogicWork(board[1][2], inputOMiddleRight);
+        writingHistory("O", "MIDDLE", "RIGHT");
     } else if(mode == 0 && board[2][0] == "" && turn == 0){
         board[2][0] = "O";
         aiWinLogicWork(board[2][0], inputOBottomLeft);
