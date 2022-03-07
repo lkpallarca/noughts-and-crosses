@@ -351,7 +351,7 @@ table {
 }
 
 #in-game-screen #grid-display .play-area {
-  height: 60vh;
+  height: auto;
   width: auto;
   display: -ms-grid;
   display: grid;
@@ -840,7 +840,6 @@ table {
 }
 
 #startup-modal {
-  display: none;
   position: fixed;
   top: 0;
   width: 100vw;
