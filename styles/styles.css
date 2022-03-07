@@ -344,15 +344,15 @@ table {
 
 @media only screen and (max-width: 575px) {
   #in-game-screen #grid-display {
-    height: 40vh;
+    height: 45vh;
     width: 60vw;
-    margin-top: 220px;
+    margin-top: 250px;
   }
 }
 
 #in-game-screen #grid-display .play-area {
-  height: auto;
-  width: auto;
+  height: inherit;
+  width: inherit;
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: (1fr)[3];

@@ -230,14 +230,14 @@
         flex-direction: column;
         
         @include responsive(xsmall) {
-            height: 40vh;
+            height: 45vh;
             width: 60vw;
-            margin-top: 220px;
+            margin-top: 250px;
         }
         
         .play-area {
-            height: auto;
-            width: auto;
+            height: inherit;
+            width: inherit;
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             grid-template-rows: repeat(3, 1fr);
