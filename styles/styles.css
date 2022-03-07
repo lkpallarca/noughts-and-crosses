@@ -344,8 +344,8 @@ table {
 
 @media only screen and (max-width: 575px) {
   #in-game-screen #grid-display {
-    height: 250px;
-    width: 300px;
+    height: 40vh;
+    width: 60vw;
     margin-top: 220px;
   }
 }
@@ -840,6 +840,7 @@ table {
 }
 
 #startup-modal {
+  display: none;
   position: fixed;
   top: 0;
   width: 100vw;
