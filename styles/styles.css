@@ -346,7 +346,7 @@ table {
   #in-game-screen #grid-display {
     height: 250px;
     width: 300px;
-    margin-top: 45vh;
+    margin-top: 220px;
   }
 }
 
@@ -755,7 +755,7 @@ table {
   #win-modal .o-win {
     font-size: 30px;
     width: 200px;
-    top: 40%;
+    top: 35%;
   }
 }
 
@@ -789,7 +789,7 @@ table {
   #win-modal .x-win {
     font-size: 30px;
     width: 200px;
-    top: 40%;
+    top: 35%;
   }
 }
 
@@ -823,7 +823,7 @@ table {
   #win-modal .ox-draw {
     font-size: 30px;
     width: 200px;
-    top: 40%;
+    top: 35%;
   }
 }
 
@@ -840,6 +840,7 @@ table {
 }
 
 #startup-modal {
+  display: none;
   position: fixed;
   top: 0;
   width: 100vw;
