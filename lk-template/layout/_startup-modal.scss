@@ -11,14 +11,6 @@
         display: none;
     }
 
-    #testing {
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translateX(-50%);
-        z-index: 10;
-    }
-
     .game-title {
         display: flex;
         justify-content: center;
@@ -34,10 +26,19 @@
         opacity: 0;
         margin-top: 5vh;
         z-index: 2;
+        text-align: center;
+        @include responsive(xsmall) {
+            margin-top: 100px;
+            width: 300px;
+        }
 
         .game-title-text {
             color: white;
             font-size: 5vw;
+
+            @include responsive(xsmall) {
+                font-size: 30px;
+            }
         }
 
         .mode-select {
@@ -46,9 +47,12 @@
             margin-top: 5vh;
             color: white;
             font-size: 3vw;
+            @include responsive(xsmall) {
+                font-size: 15px;
+            }
 
             .two-player {
-                margin-right: 20px;
+                margin: 0 10px;
 
                 &.selected {
                     color: blue;
@@ -60,7 +64,7 @@
             }
 
             .vs-ai {
-                margin-right: 20px;
+                margin: 0 10px;
                 // display: none;
 
                 &.selected {
@@ -91,6 +95,9 @@
         height: auto;
         background-color: transparent;
         transition: 0.7s width ease-in-out;
+        @include responsive(xsmall) {
+            margin-bottom: 180px;
+        }
 
 
         .player-select-x {
@@ -98,6 +105,9 @@
             cursor: pointer;
             color: blue;
             font-size: 25vw;
+            @include responsive(xsmall) {
+                font-size: 160px;
+            }
 
             &:hover {
                 text-shadow: -7px 7px 10px hsl(0, 0%, 50%), -7px -7px 10px hsl(0, 0%, 50%);
@@ -128,10 +138,16 @@
         height: auto;
         background-color: transparent;
         transition: 0.7s width ease-in-out;
+        @include responsive(xsmall) {
+            margin-bottom: 180px;
+        }
 
         .player-select-o {
             color: red;
             font-size: 25vw;
+            @include responsive(xsmall) {
+                font-size: 160px;
+            }
 
             &:hover {
                 text-shadow: 7px 7px 10px hsl(0, 0%, 50%), 7px -7px 10px hsl(0, 0%, 50%);
@@ -162,6 +178,10 @@
         z-index: 2;
         color: white;
         font-size: 2vw;
+        @include responsive(xsmall) {
+                margin-bottom: 130px;
+                font-size: 15px;
+            }
 
         &.flicker {
             text-shadow: 0 0 20px hsl(0, 0%, 100%), 0 0 20px hsl(0, 0%, 100%);
@@ -189,6 +209,10 @@
         z-index: 2;
         color: white;
         font-size: 2vw;
+        @include responsive(xsmall) {
+            margin-bottom: 130px;
+            font-size: 15px;
+        }
 
         &:hover {
             text-shadow: 0 0 10px hsl(0, 0%, 100%);
@@ -200,3 +224,4 @@
         }
     }
 }
+

@@ -1,3 +1,31 @@
+@mixin responsive($breakpoint) {
+    @if $breakpoint == xlarge {
+        @media only screen and (max-width: 1399px) {
+            @content;
+        }
+    } @else if $breakpoint == large {
+        @media only screen and (max-width: 1199px) {
+            @content;
+        }
+    } @else if $breakpoint == medium {
+        @media only screen and (max-width: 991px) {
+            @content;
+        }
+    } @else if $breakpoint == small {
+        @media only screen and (max-width: 767px) {
+            @content;
+        }
+    } @else if $breakpoint == xsmall {
+        @media only screen and (max-width: 575px) {
+            @content;
+        }
+    } @else if $breakpoint == xxsmall {
+        @media only screen and (max-width: 480px) {
+            @content;
+        }
+    }
+}
+
 @mixin player-input {
     display: none;
 }

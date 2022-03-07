@@ -30,6 +30,7 @@ footer, header, hgroup, menu, nav, section {
 
 body {
   line-height: 1;
+  overflow-x: hidden;
 }
 
 ol, ul {
@@ -72,6 +73,12 @@ table {
   margin-top: 15vh;
 }
 
+@media only screen and (max-width: 575px) {
+  #in-game-screen .in-game-info {
+    margin-top: 0;
+  }
+}
+
 #in-game-screen .in-game-info.hide {
   display: none;
 }
@@ -82,10 +89,25 @@ table {
   margin-bottom: 15px;
 }
 
+@media only screen and (max-width: 575px) {
+  #in-game-screen .in-game-info .current-game-mode {
+    font-size: 16px;
+    margin-bottom: 7px;
+  }
+}
+
 #in-game-screen .in-game-info .current-player-moving {
   font-size: 20px;
   color: white;
   margin-bottom: 20px;
+}
+
+@media only screen and (max-width: 575px) {
+  #in-game-screen .in-game-info .current-player-moving {
+    font-size: 14px;
+    margin-bottom: 7px;
+    width: 140px;
+  }
 }
 
 #in-game-screen .in-game-info .in-game-player-x {
@@ -107,15 +129,36 @@ table {
   padding: 12px 0 0 5px;
 }
 
+@media only screen and (max-width: 575px) {
+  #in-game-screen .in-game-info .in-game-player-x {
+    height: 20px;
+    width: 60px;
+    padding: 4px 0 0 5px;
+  }
+}
+
 #in-game-screen .in-game-info .in-game-player-x #win-counter-x {
   font-size: 20px;
   -webkit-transition-delay: 0.4s;
           transition-delay: 0.4s;
 }
 
+@media only screen and (max-width: 575px) {
+  #in-game-screen .in-game-info .in-game-player-x #win-counter-x {
+    font-size: 16px;
+  }
+}
+
 #in-game-screen .in-game-info .in-game-player-x.hoverable:hover {
   width: 220px;
   font-size: 20px;
+}
+
+@media only screen and (max-width: 575px) {
+  #in-game-screen .in-game-info .in-game-player-x.hoverable:hover {
+    font-size: 16px;
+    width: 170px;
+  }
 }
 
 #in-game-screen .in-game-info .in-game-player-x.hoverable:hover #win-counter-x {
@@ -144,15 +187,37 @@ table {
   padding: 12px 0 0 5px;
 }
 
+@media only screen and (max-width: 575px) {
+  #in-game-screen .in-game-info .in-game-player-o {
+    height: 20px;
+    width: 60px;
+    padding: 4px 0 0 5px;
+    margin-top: 7px;
+  }
+}
+
 #in-game-screen .in-game-info .in-game-player-o #win-counter-o {
   font-size: 20px;
   -webkit-transition-delay: 0.4s;
           transition-delay: 0.4s;
 }
 
+@media only screen and (max-width: 575px) {
+  #in-game-screen .in-game-info .in-game-player-o #win-counter-o {
+    font-size: 16px;
+  }
+}
+
 #in-game-screen .in-game-info .in-game-player-o.hoverable:hover {
   width: 220px;
   font-size: 20px;
+}
+
+@media only screen and (max-width: 575px) {
+  #in-game-screen .in-game-info .in-game-player-o.hoverable:hover {
+    font-size: 16px;
+    width: 170px;
+  }
 }
 
 #in-game-screen .in-game-info .in-game-player-o.hoverable:hover #win-counter-o {
@@ -178,6 +243,16 @@ table {
   padding: 12px 0 0 5px;
 }
 
+@media only screen and (max-width: 575px) {
+  #in-game-screen .in-game-info .in-game-player-draw {
+    height: 20px;
+    width: 60px;
+    padding: 4px 0 0 5px;
+    margin-top: 7px;
+    font-size: 14px;
+  }
+}
+
 #in-game-screen .in-game-info .in-game-change-mode {
   -webkit-user-select: none;
      -moz-user-select: none;
@@ -189,7 +264,7 @@ table {
   border-bottom-right-radius: 40px;
   position: relative;
   height: 33px;
-  width: 190px;
+  width: 115px;
   background-color: white;
   color: black;
   -webkit-transition: 0.4s all ease-in-out;
@@ -198,8 +273,23 @@ table {
   padding: 12px 0 0 5px;
 }
 
+@media only screen and (max-width: 575px) {
+  #in-game-screen .in-game-info .in-game-change-mode {
+    height: 20px;
+    width: 90px;
+    padding: 4px 0 0 5px;
+    margin-top: 7px;
+  }
+}
+
 #in-game-screen .in-game-info .in-game-change-mode #game-mode {
   font-size: 20px;
+}
+
+@media only screen and (max-width: 575px) {
+  #in-game-screen .in-game-info .in-game-change-mode #game-mode {
+    font-size: 16px;
+  }
 }
 
 #in-game-screen .in-game-info .x-player-info-image {
@@ -210,12 +300,30 @@ table {
   width: 40px;
 }
 
+@media only screen and (max-width: 575px) {
+  #in-game-screen .in-game-info .x-player-info-image {
+    height: 20px;
+    width: 20px;
+    top: 2px;
+    right: -20px;
+  }
+}
+
 #in-game-screen .in-game-info .o-player-info-image {
   position: absolute;
   top: -2px;
   right: -46px;
   height: 50px;
   width: 50px;
+}
+
+@media only screen and (max-width: 575px) {
+  #in-game-screen .in-game-info .o-player-info-image {
+    height: 27.5px;
+    width: 27.5px;
+    top: -1.5px;
+    right: -25px;
+  }
 }
 
 #in-game-screen #grid-display {
@@ -232,6 +340,14 @@ table {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+}
+
+@media only screen and (max-width: 575px) {
+  #in-game-screen #grid-display {
+    height: 250px;
+    width: 300px;
+    margin-top: 45vh;
+  }
 }
 
 #in-game-screen #grid-display .play-area {
@@ -270,6 +386,13 @@ table {
 #in-game-screen #grid-display .play-area .xo-grid .x .x-image {
   height: 75px;
   width: 75px;
+}
+
+@media only screen and (max-width: 575px) {
+  #in-game-screen #grid-display .play-area .xo-grid .x .x-image {
+    height: 45px;
+    width: 45px;
+  }
 }
 
 #in-game-screen #grid-display .play-area .xo-grid .x .x-image.top-left {
@@ -347,6 +470,13 @@ table {
 #in-game-screen #grid-display .play-area .xo-grid .o .o-image {
   height: 100px;
   width: 100px;
+}
+
+@media only screen and (max-width: 575px) {
+  #in-game-screen #grid-display .play-area .xo-grid .o .o-image {
+    height: 60px;
+    width: 60px;
+  }
 }
 
 #in-game-screen #grid-display .play-area .xo-grid .o .o-image.top-left {
@@ -458,6 +588,13 @@ table {
   visibility: hidden;
 }
 
+@media only screen and (max-width: 575px) {
+  #in-game-screen #grid-display .trigger-buttons .previous-move-trigger {
+    font-size: 14px;
+    margin-top: 20px;
+  }
+}
+
 #in-game-screen #grid-display .trigger-buttons .previous-move-trigger.show {
   cursor: pointer;
   visibility: visible;
@@ -472,6 +609,13 @@ table {
   font-size: 20px;
   color: white;
   visibility: hidden;
+}
+
+@media only screen and (max-width: 575px) {
+  #in-game-screen #grid-display .trigger-buttons .next-move-trigger {
+    font-size: 14px;
+    margin-top: 20px;
+  }
 }
 
 #in-game-screen #grid-display .trigger-buttons .next-move-trigger.show {
@@ -490,6 +634,13 @@ table {
   font-size: 20px;
 }
 
+@media only screen and (max-width: 575px) {
+  #in-game-screen #grid-display .trigger-buttons #trigger {
+    font-size: 14px;
+    margin-top: 20px;
+  }
+}
+
 #in-game-screen #grid-display .trigger-buttons #trigger:hover {
   text-shadow: 0 0 10px white;
 }
@@ -497,6 +648,12 @@ table {
 #in-game-screen .history-display-wrapper {
   position: relative;
   width: 315px;
+}
+
+@media only screen and (max-width: 575px) {
+  #in-game-screen .history-display-wrapper {
+    width: 270px;
+  }
 }
 
 #in-game-screen .history-display-wrapper .history-display-hover {
@@ -520,23 +677,54 @@ table {
   transition: 0.4s width;
 }
 
+@media only screen and (max-width: 575px) {
+  #in-game-screen .history-display-wrapper .history-display-hover {
+    font-size: 16px;
+    width: 140px;
+    height: 22px;
+    padding: 5px 0 0 10px;
+    margin-top: 5px;
+  }
+}
+
 #in-game-screen .history-display-wrapper .history-display-hover.elongate {
   width: 330px;
+}
+
+@media only screen and (max-width: 575px) {
+  #in-game-screen .history-display-wrapper .history-display-hover.elongate {
+    width: 180px;
+  }
 }
 
 #in-game-screen .history-display-wrapper #history-display {
   margin-top: 24vh;
   height: auto;
-  width: auto;
   color: white;
   visibility: visible;
   -webkit-transition-delay: 0.4s;
           transition-delay: 0.4s;
 }
 
+@media only screen and (max-width: 575px) {
+  #in-game-screen .history-display-wrapper #history-display {
+    position: relative;
+    z-index: 5;
+    margin-top: 40px;
+    background: black;
+  }
+}
+
 #in-game-screen .history-display-wrapper #history-display div {
   margin-top: 10px;
   font-size: 14px;
+}
+
+@media only screen and (max-width: 575px) {
+  #in-game-screen .history-display-wrapper #history-display div {
+    margin-top: 5px;
+    font-size: 12px;
+  }
 }
 
 #in-game-screen .history-display-wrapper #history-display div.blur {
@@ -561,6 +749,14 @@ table {
   color: white;
   text-shadow: 5px 7px 10px blue, -5px -7px 10px red;
   font-size: 70px;
+}
+
+@media only screen and (max-width: 575px) {
+  #win-modal .o-win {
+    font-size: 30px;
+    width: 200px;
+    top: 40%;
+  }
 }
 
 #win-modal .o-win.show {
@@ -589,6 +785,14 @@ table {
   font-size: 70px;
 }
 
+@media only screen and (max-width: 575px) {
+  #win-modal .x-win {
+    font-size: 30px;
+    width: 200px;
+    top: 40%;
+  }
+}
+
 #win-modal .x-win.show {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -615,6 +819,14 @@ table {
   font-size: 70px;
 }
 
+@media only screen and (max-width: 575px) {
+  #win-modal .ox-draw {
+    font-size: 30px;
+    width: 200px;
+    top: 40%;
+  }
+}
+
 #win-modal .ox-draw.show {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -638,15 +850,6 @@ table {
 
 #startup-modal.hide {
   display: none;
-}
-
-#startup-modal #testing {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translateX(-50%);
-          transform: translateX(-50%);
-  z-index: 10;
 }
 
 #startup-modal .game-title {
@@ -675,11 +878,25 @@ table {
   opacity: 0;
   margin-top: 5vh;
   z-index: 2;
+  text-align: center;
+}
+
+@media only screen and (max-width: 575px) {
+  #startup-modal .game-title {
+    margin-top: 100px;
+    width: 300px;
+  }
 }
 
 #startup-modal .game-title .game-title-text {
   color: white;
   font-size: 5vw;
+}
+
+@media only screen and (max-width: 575px) {
+  #startup-modal .game-title .game-title-text {
+    font-size: 30px;
+  }
 }
 
 #startup-modal .game-title .mode-select {
@@ -693,8 +910,14 @@ table {
   font-size: 3vw;
 }
 
+@media only screen and (max-width: 575px) {
+  #startup-modal .game-title .mode-select {
+    font-size: 15px;
+  }
+}
+
 #startup-modal .game-title .mode-select .two-player {
-  margin-right: 20px;
+  margin: 0 10px;
 }
 
 #startup-modal .game-title .mode-select .two-player.selected {
@@ -706,7 +929,7 @@ table {
 }
 
 #startup-modal .game-title .mode-select .vs-ai {
-  margin-right: 20px;
+  margin: 0 10px;
 }
 
 #startup-modal .game-title .mode-select .vs-ai.selected {
@@ -743,6 +966,12 @@ table {
   transition: 0.7s width ease-in-out;
 }
 
+@media only screen and (max-width: 575px) {
+  #startup-modal .start-player-x {
+    margin-bottom: 180px;
+  }
+}
+
 #startup-modal .start-player-x .player-select-x {
   -webkit-user-select: none;
      -moz-user-select: none;
@@ -751,6 +980,12 @@ table {
   cursor: pointer;
   color: blue;
   font-size: 25vw;
+}
+
+@media only screen and (max-width: 575px) {
+  #startup-modal .start-player-x .player-select-x {
+    font-size: 160px;
+  }
 }
 
 #startup-modal .start-player-x .player-select-x:hover {
@@ -793,9 +1028,21 @@ table {
   transition: 0.7s width ease-in-out;
 }
 
+@media only screen and (max-width: 575px) {
+  #startup-modal .start-player-o {
+    margin-bottom: 180px;
+  }
+}
+
 #startup-modal .start-player-o .player-select-o {
   color: red;
   font-size: 25vw;
+}
+
+@media only screen and (max-width: 575px) {
+  #startup-modal .start-player-o .player-select-o {
+    font-size: 160px;
+  }
 }
 
 #startup-modal .start-player-o .player-select-o:hover {
@@ -831,6 +1078,13 @@ table {
   font-size: 2vw;
 }
 
+@media only screen and (max-width: 575px) {
+  #startup-modal .first-move-select {
+    margin-bottom: 130px;
+    font-size: 15px;
+  }
+}
+
 #startup-modal .first-move-select.flicker {
   text-shadow: 0 0 20px white, 0 0 20px white;
 }
@@ -862,6 +1116,13 @@ table {
   z-index: 2;
   color: white;
   font-size: 2vw;
+}
+
+@media only screen and (max-width: 575px) {
+  #startup-modal .game-start {
+    margin-bottom: 130px;
+    font-size: 15px;
+  }
 }
 
 #startup-modal .game-start:hover {

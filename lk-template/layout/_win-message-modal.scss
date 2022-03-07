@@ -11,6 +11,12 @@
         text-shadow: 5px 7px 10px hsl(240, 100%, 50%), -5px -7px 10px hsl(0, 100%, 50%);
         font-size: 70px;
 
+        @include responsive(xsmall) {
+            font-size: 30px;
+            width: 200px;
+            top: 40%;
+        }
+
         &.show {
             display: flex;
             justify-content: center;
@@ -30,6 +36,12 @@
         text-shadow: -5px -7px 10px hsl(240, 100%, 50%), 5px 7px 10px hsl(0, 100%, 50%);
         font-size: 70px;
 
+        @include responsive(xsmall) {
+            font-size: 30px;
+            width: 200px;
+            top: 40%;
+        }
+
         &.show {
             display: flex;
             justify-content: center;
@@ -48,6 +60,12 @@
         color: white;
         text-shadow: 0 -7px 10px hsl(0, 0%, 50%), 0 7px 10px hsl(0, 0%, 50%);
         font-size: 70px;
+
+        @include responsive(xsmall) {
+            font-size: 30px;
+            width: 200px;
+            top: 40%;
+        }
 
         &.show {
             display: flex;

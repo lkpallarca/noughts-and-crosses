@@ -7,6 +7,9 @@
         display: flex;
         flex-direction: column;
         margin-top: 15vh;
+        @include responsive(xsmall) {
+            margin-top: 0;
+        }
         
         &.hide {
             display: none;
@@ -16,12 +19,23 @@
             font-size: 30px;
             color: white;
             margin-bottom: 15px;
+
+            @include responsive(xsmall) {
+                font-size: 16px;
+                margin-bottom: 7px;
+            }
         }
 
         .current-player-moving {
             font-size: 20px;
             color: white;
-            margin-bottom: 20px;
+            margin-bottom: 20px;;
+
+            @include responsive(xsmall) {
+                font-size: 14px;
+                margin-bottom: 7px;
+                width: 140px;
+            }
         }
 
         .in-game-player-x {
@@ -38,15 +52,31 @@
             font-size: 0px;
             padding: 12px 0 0 5px;
 
+            @include responsive(xsmall) {
+                height: 20px;
+                width: 60px;
+                padding: 4px 0 0 5px;
+            }
+
+            
             #win-counter-x {
                 font-size: 20px;
                 transition-delay: 0.4s;
+
+                @include responsive(xsmall) {
+                    font-size: 16px;
+                }
             }
 
             &.hoverable{
                 &:hover {
                     width: 220px;
                     font-size: 20px;
+
+                    @include responsive(xsmall) {
+                        font-size: 16px;
+                        width: 170px;
+                    }
 
                     #win-counter-x {
                         font-size: 0;
@@ -72,15 +102,31 @@
             font-size: 0px;
             padding: 12px 0 0 5px;
 
+            @include responsive(xsmall) {
+                height: 20px;
+                width: 60px;
+                padding: 4px 0 0 5px;
+                margin-top: 7px;
+            }
+
             #win-counter-o {
                 font-size: 20px;
                 transition-delay: 0.4s;
+
+                @include responsive(xsmall) {
+                    font-size: 16px;
+                }
             }
 
             &.hoverable{
                 &:hover {
                     width: 220px;
                     font-size: 20px;
+
+                    @include responsive(xsmall) {
+                        font-size: 16px;
+                        width: 170px;
+                    }
                 
                     #win-counter-o {
                         font-size: 0;
@@ -102,6 +148,14 @@
             color: white;
             font-size: 18px;
             padding: 12px 0 0 5px;
+
+            @include responsive(xsmall) {
+                height: 20px;
+                width: 60px;
+                padding: 4px 0 0 5px;
+                margin-top: 7px;
+                font-size: 14px;
+            }
         }
 
         .in-game-change-mode {
@@ -112,15 +166,26 @@
             border-bottom-right-radius: 40px;
             position: relative;
             height: 33px;
-            width: 190px;
+            width: 115px;
             background-color: white;
             color: black;
             transition: 0.4s all ease-in-out;
             font-size: 0px;
             padding: 12px 0 0 5px;
 
+            @include responsive(xsmall) {
+                height: 20px;
+                width: 90px;
+                padding: 4px 0 0 5px;
+                margin-top: 7px;
+            }
+
             #game-mode {
                 font-size: 20px;
+
+                @include responsive(xsmall) {
+                    font-size: 16px;
+                }
             }
         }
 
@@ -130,6 +195,13 @@
             right: -40px;
             height: 40px;
             width: 40px;
+
+            @include responsive(xsmall) {
+                height: 20px;
+                width: 20px;
+                top: 2px;
+                right: -20px;
+            }
         }
 
         .o-player-info-image {
@@ -138,6 +210,13 @@
             right: -46px;
             height: 50px;
             width: 50px;
+
+            @include responsive(xsmall) {
+                height: 27.5px;
+                width: 27.5px;
+                top: -1.5px;
+                right: -25px;
+            }
         }
     }
 
@@ -149,13 +228,20 @@
         margin-top: 20vh;
         display: flex;
         flex-direction: column;
-    
+        
+        @include responsive(xsmall) {
+            height: 250px;
+            width: 300px;
+            margin-top: 45vh;
+        }
+        
         .play-area {
             height: 60vh;
             width: auto;
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             grid-template-rows: repeat(3, 1fr);
+
             
             .xo-grid {
                 cursor: pointer;
@@ -176,6 +262,11 @@
                     .x-image {
                         height: 75px;
                         width: 75px;
+
+                        @include responsive(xsmall) {
+                            height: 45px;
+                            width: 45px;
+                        }
     
                         &.top-left {
                             @include player-input;
@@ -255,6 +346,11 @@
                     .o-image {
                         height: 100px;
                         width: 100px;
+
+                        @include responsive(xsmall) {
+                            height: 60px;
+                            width: 60px;
+                        }
     
                         &.top-left {
                             @include player-input;
@@ -360,6 +456,11 @@
                 font-size: 20px;
                 color: white;
                 visibility: hidden;
+
+                @include responsive(xsmall) {
+                    font-size: 14px;
+                    margin-top: 20px;
+                }
                 
                 &.show {
                     cursor: pointer;
@@ -373,6 +474,11 @@
                 font-size: 20px;
                 color: white;
                 visibility: hidden;
+
+                @include responsive(xsmall) {
+                    font-size: 14px;
+                    margin-top: 20px;
+                }
                 
                 &.show {
                     cursor: pointer;
@@ -386,6 +492,11 @@
                 user-select: none;
                 color: white;
                 font-size: 20px;
+
+                @include responsive(xsmall) {
+                    font-size: 14px;
+                    margin-top: 20px;
+                }
         
                 &:hover {
                     text-shadow: 0 0 10px hsl(0, 0%, 100%);
@@ -398,6 +509,10 @@
     .history-display-wrapper {
         position: relative;
         width: 315px;
+
+        @include responsive(xsmall) {
+            width: 270px;
+        }
 
         .history-display-hover {
             position: absolute;
@@ -415,22 +530,45 @@
             padding: 12px 0 0 10px;
             transition: 0.4s width;
 
+            @include responsive(xsmall) {
+                font-size: 16px;
+                width: 140px;
+                height: 22px;
+                padding: 5px 0 0 10px;
+                margin-top: 5px;
+            }
+
             &.elongate {
                 width: 330px;
+
+                @include responsive(xsmall) {
+                    width: 180px;
+                }
             }
         }
         
         #history-display {
             margin-top: 24vh;
             height: auto;
-            width: auto;
             color: white;
             visibility: visible;
             transition-delay: 0.4s;
+
+            @include responsive(xsmall) {
+                position: relative;
+                z-index: 5;
+                margin-top: 40px;
+                background: black;
+            }
     
             div {
                 margin-top: 10px;
                 font-size: 14px;
+
+                @include responsive(xsmall) {
+                    margin-top: 5px;
+                    font-size: 12px;
+                }
 
                 &.blur {
                     color: hsl(0, 0%, 50%);
